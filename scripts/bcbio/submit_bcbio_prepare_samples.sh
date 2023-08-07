@@ -29,7 +29,7 @@ BATCH=$4
 
 source $CONFIG
 
-PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1 | cut -f 2`
+PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1 | cut -f 1`
 
 # Create the prepare_samples.csv file
 
@@ -48,6 +48,7 @@ do
 done
 
 # Group the FASTQ files by sample
+# This will create a symlink
 bcbio_prepare_samples.py --out $READS --csv ${PATIENT_ID}_prepare_samples.csv
 
 # Create the YAML template
