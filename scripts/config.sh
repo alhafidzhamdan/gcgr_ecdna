@@ -52,7 +52,7 @@ M2_Var=$INTERSECT_DIR/M2_Var
 S2_Var=$INTERSECT_DIR/S2_Var
 CONSENSUS_DIR=$SSV/consensus
 ENSEMBLE_DIR=$SSV/ensemble
-ENSEMBLE_VCF=$ENSEMBLE_DIR/${PATIENT_ID}${TYPE}.ssv.vcf.gz
+ENSEMBLE_VCF=$ENSEMBLE_DIR/${STAGE}/${PATIENT_ID}${TYPE}.ssv.vcf.gz
 
 CNV=$WGS/variants/cnv
 PREPROCESSED_INTERVALS=$CNV/interval_list
@@ -131,6 +131,7 @@ GRIDSS_ASSEMBLY=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/resu
 GRIDSS_WORKING_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/working_dir/${PATIENT_ID}${TYPE}
 GRIDSS_RAW_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.raw.vcf
 GRIDSS_RM=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/scripts/gridss_annotate_vcf_repeatmasker.sh
+GRIDSS_SOMATIC_FILTER=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/scripts/gridss_somatic_filter.R
 GRIDSS_FINAL_FILTERED=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.final.filtered.vcf
 GRIDSS_FINAL_FILTERED_RM=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.final.filtered.rm.vcf
 GRIDSS_PON_FILTERED=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.pon.filtered.vcf
@@ -138,7 +139,6 @@ GRIDSS_PON_FILTERED_RM=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/grid
 GRIDSS_PON=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/pondir/${BATCH}
 LIBGRIDSS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss
 GRIDSS_PLOT_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/plotdir
-GRIDSS_SOMATIC_FILTER=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss/gridss_somatic_filter.R
 
 ### LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sv-linx-v1.11/sv-linx_v1.11.jar
 LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-linx-v1.20/linx_v1.20.jar
