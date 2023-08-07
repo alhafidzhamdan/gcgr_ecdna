@@ -21,7 +21,7 @@ LANES=$WGS/raw/lanes
 BCBIO_CONFIG=$BASE/bcbio/config
 BCBIO_WORK=$BASE/bcbio/work
 
-SCRIPTS=$BASE/scripts/gcgr_ecdna/bcbio
+SCRIPTS=$BASE/scripts/gcgr_ecdna/scripts/bcbio
 RESOURCES=$BASE/resources
 
 METRICS=$WGS/metrics
