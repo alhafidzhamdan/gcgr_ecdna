@@ -27,7 +27,7 @@ unset MODULEPATH
 CONFIG=$1
 IDS=$2
 DATE=$3
-NAME=$4
+BATCH=$4
 
 source $CONFIG
 
@@ -44,7 +44,7 @@ echo "$ALIGNMENTS/${ID}T/${ID}T/${ID}T-ready.bam,${ID}T,${ID},tumor" >> ${ID}_pr
 bcbio_nextgen.py -w template $BCBIO_VARIANT_TEMPLATE ${ID}_prepare_variants.csv $ALIGNMENTS/${ID}*/$ID*/$ID*-ready.bam
 
 # Change the template file name, add the fc date and the upload directory
-perl $SCRIPTS/edit_bcbio_variant_config.pl --fc_name $NAME --fc_date $DATE --upload $BCBIO_VARIANTS/$ID < ${ID}_prepare_variants/config/${ID}_prepare_variants.yaml > ${ID}_variant.yaml
+perl $SCRIPTS/edit_bcbio_variant_config.pl --fc_name $BATCH --fc_date $DATE --upload $BCBIO_VARIANTS/$ID < ${ID}_prepare_variants/config/${ID}_prepare_variants.yaml > ${ID}_variant.yaml
 
 # Clean up the intermediate directories
 rm -r ${ID}_prepare_variants
