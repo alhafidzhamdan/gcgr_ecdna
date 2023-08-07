@@ -12,8 +12,6 @@ export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin:$PA
 ## Base:
 BASE=/exports/igmm/eddie/Glioblastoma-WGS
 WGS=/exports/igmm/eddie/Glioblastoma-WGS/WGS
-##BAM_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/raw/source/${BATCH}
-##BAM_DIR=/exports/igmm/eddie/Glioblastoma-WGS/ChIP-seq/${BATCH}
 ALIGNMENTS=$WGS/alignments
 PARAMS=$WGS/params
 SOURCE=$WGS/raw/source
@@ -25,8 +23,6 @@ BCBIO_WORK=$BASE/bcbio/work
 
 SCRIPTS=$BASE/scripts
 FAME_GBM=$SCRIPTS/fame_gbm
-TITANCNA=$FAME_GBM/R/titanCNA.R
-SEQUENZA=$FAME_GBM/R/sequenza.R
 RESOURCES=$BASE/resources
 
 METRICS=$WGS/metrics
@@ -78,13 +74,9 @@ GISTIC_SEGMENTS=$CNV/gistic2/seg_files
 PLOT_MODEL_SEGMENTS=$CNV/plot_model_segments
 CALLED_COPY_RATIOS=$CNV/called_copy_ratios
 
-TITAN_DIR=$CNV/titan
-
 MANTA_UNFILTERED_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/bcbio/${PATIENT_ID}/${PATIENT_ID}T/${PATIENT_ID}-manta.vcf.gz 
 MANTA_HIGH_CONF_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/manta/${PATIENT_ID}-manta.high.conf.vcf.gz
 MANTA_LOW_CONF_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/manta/${PATIENT_ID}-manta.low.conf.vcf.gz
-
-BLAST=/exports/igmm/eddie/Glioblastoma-WGS/SOX/blast
 
 WORK_DIR=$BCBIO_WORK/$PATIENT_ID
 JVM_OPTS="-Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=1 -Xms12g -Xmx12g"
@@ -142,8 +134,6 @@ HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources
 
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
 GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
-
-
 GRIDSS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/scripts/gridss.sh
 GRIDSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/gridss-2.10.0-gridss-jar-with-dependencies.jar
 GRIDSS_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results
@@ -186,36 +176,6 @@ SLICED_BAM_TUMOR=$LILAC_INPUT/${PATIENT_ID}${NEW_TYPE}.tumour.hla_sliced.bam
 SLICED_BAM_TUMOR_REALIGNED=$LILAC_INPUT/${PATIENT_ID}${NEW_TYPE}.tumour.hla_sliced_realigned_to_no_alt.bam
 ###SLICED_BAM_TUMOR_REALIGNED_HLA_SUBSET=$LILAC_INPUT/${PATIENT_ID}${NEW_TYPE}.tumour.hla_sliced_realigned_to_no_alt_HLA_subset.bam
 
-## LOHHLA:
-HLA_FASTA=/exports/igmm/eddie/Glioblastoma-WGS/resources/lohhla/hla_nuc.fasta ## this does not include introns
-HLA_DAT=/exports/igmm/eddie/Glioblastoma-WGS/resources/lohhla/hla.dat
-NOVOALIGN_BIN=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/lohhla/bin
-
-### might delete:
-##SLICED_BAM_NORMAL_SORTED=$LILAC_INPUT/${PATIENT_ID}${TYPE}.germline.hla_sliced_sorted.bam
-##SLICED_NORMAL_FQ1=$LILAC_INPUT/${PATIENT_ID}${TYPE}.germline.hla_sliced_sorted_R1.fastq
-##SLICED_NORMAL_FQ2=$LILAC_INPUT/${PATIENT_ID}${TYPE}.germline.hla_sliced_sorted_R2.fastq
-##HLA_REALIGNED_NO_ALT_NORMAL=$LILAC_INPUT/${PATIENT_ID}${TYPE}.germline.hla_to_no_alt.bam
-##SLICED_BAM_TUMOR=$LILAC_INPUT/${PATIENT_ID}${TYPE}.tumour.hla_sliced.bam
-##SLICED_BAM_TUMOR_SORTED=$LILAC_INPUT/${PATIENT_ID}${TYPE}.tumour.hla_sliced_sorted.bam
-##SLICED_TUMOR_FQ1=$LILAC_INPUT/${PATIENT_ID}${TYPE}.tumour.hla_sliced_sorted_R1.fastq
-##SLICED_TUMOR_FQ2=$LILAC_INPUT/${PATIENT_ID}${TYPE}.tumour.hla_sliced_sorted_R2.fastq
-##HLA_REALIGNED_NO_ALT_TUMOR=$LILAC_INPUT/${PATIENT_ID}${TYPE}.tumour.hla_to_no_alt.bam
-
-## Jabba:
-GCMAP=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/jabba/gcmap
-FRAG_RESULT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/jabba/fragCounter
-
-### SVCLONE
-SVCLONE_BASE=$VARIANTS/sv/svclone
-SVCLONE_INPUT=$SVCLONE_BASE/input
-SVCLONE_CONFIG=$SVCLONE_INPUT/configs/${BATCH}_svclone_config.ini
-SVCLONE_PLOIDY_PURITY=$SVCLONE_INPUT/purity_ploidy/${SAMPLE_ID}_purity_ploidy.txt
-SVCLONE_CNV=$SVCLONE_INPUT/cnvs/${SAMPLE_ID}_cnvs.txt
-SVCLONE_OUTPUT=$SVCLONE_BASE/output
-SVCLONE_ANN=$SVCLONE_OUTPUT/${SAMPLE_ID}/${SAMPLE_ID}_svin.txt
-SVCLONE_COUNT=$SVCLONE_OUTPUT/${SAMPLE_ID}/${SAMPLE_ID}_svinfo.txt
-
 ## Misc:
 MSISENSOR=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/bin/msisensor
 MSI_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/MSI
@@ -249,54 +209,5 @@ HG38_CHROM_SIZE=/exports/igmm/eddie/Glioblastoma-WGS/resources/hg38.chrom.sizes
 GISTIC2_DIR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/GISTIC2
 GISTIC2=$GISTIC2_DIR/gistic2
 GISTICREF=$GISTIC2_DIR/refgenefiles/hg38.UCSC.add_miR.160920.refgene.mat
-CHAINFINDER_DIR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/ChainFinder_1.0.1
-CHAINFINDER=$CHAINFINDER_DIR/run_ChainFinder.sh
-MCR_ENV=$SCRIPTS/MCR/v81
-
-## RNA-seq:
-RNA_LANES=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/raw/lane
-KALLISTO_INDEX=$RESOURCES/RNA-seq_resources/kallisto/Homo_sapiens.GRCh38.cdna.all.release-94_k31.idx
-CHR_LENGTH=$RESOURCES/RNA-seq_resources/chrom.txt
-T2G=$RESOURCES/RNA-seq_resources/transcripts_to_genes.txt
-STAR_GENOME_DIR=$RESOURCES/RNA-seq_resources/star/genome
-STAR_GENOME=$RESOURCES/RNA-seq_resources/star/genome/GRCh38.p13.genome.fa
-STAR_GTF=$RESOURCES/RNA-seq_resources/star/genome/gencode.v36.annotation.gtf
-STAR_RESULTS=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/STAR
-STAR_ISOFOX=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/STAR_ISOFOX
-STAR_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/scripts/STAR-Fusion-v1.9.1/STAR-Fusion
-STAR_FUSION_DIR=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/STAR_FUSION
-STAR_FUSION_LIB=/exports/igmm/eddie/Glioblastoma-WGS/resources/RNA-seq_resources/star-fusion/GRCh38_gencode_v29_CTAT_lib_Mar272019.plug-n-play/ctat_genome_lib_build_dir
-STAR_ALIGNED_BAM=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/STAR/${PATIENT_ID}Aligned.sortedByCoord.out.bam
-TRINITY_DIR=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/TRINITY
-CICERO_DIR=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/CICERO
-CICERO_REF=/exports/igmm/eddie/Glioblastoma-WGS/scripts/CICERO-0.3.0/ref/reference/Homo_sapiens/GRCh38_no_alt
-##ISOFOX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-isofox-v1.1/isofox_v1.1.1.jar
-ISOFOX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-isofox-v1.3/isofox_v1.3.jar
-ISOFOX_EXPECTED_COUNTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/RNA-seq_resources/ISOFOX/read_151_exp_counts.csv
-ISOFOX_EXPECTED_GC=/exports/igmm/eddie/Glioblastoma-WGS/resources/RNA-seq_resources/ISOFOX/read_100_exp_gc_ratios.csv
-ISOFOX_KNOWN_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/RNA-seq_resources/ISOFOX/known_fusion_data.38.csv
-
-RNA_READS=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/raw/reads
-RSEM_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/RNA-seq_resources/rsem/genome
-RSEM_QUANT=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/alt_rsem/Quant
-RSEM_BAM=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/alt_rsem/transcriptome_bam
-RSEM_LOG=/exports/igmm/eddie/Glioblastoma-WGS/RNA-seq/results/alt_rsem/log
-
-## ChIP-seq:
-PHANTOMPEAKQUAL=/exports/igmm/eddie/Glioblastoma-WGS/scripts/phantompeakqualtools/
-XCOR=/exports/igmm/eddie/Glioblastoma-WGS/ChIP-seq/qc/phantompeakqualtools/xcor
-SINGLE_END_READS=/exports/igmm/eddie/Glioblastoma-WGS/ChIP-seq/H3K27ac-seq_GBM/reads/Single_end_reads
-PAIRED_END_READS=/exports/igmm/eddie/Glioblastoma-WGS/ChIP-seq/H3K27ac-seq_GBM/reads/Paired_end_reads
-CHIP_BAMS_DIR=/exports/igmm/eddie/Glioblastoma-WGS/ChIP-seq/${BATCH}/bams
-CHIP_QC_DIR=/exports/igmm/eddie/Glioblastoma-WGS/ChIP-seq/${BATCH}/qc
-CHIP_DEEPTOOLS=$CHIP_QC_DIR/deeptools
-CHIP_IDR=$CHIP_QC_DIR/IDR
-
-## Mitotic bookmarking chip-seq
-MM10_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/refgenome_mmusculus/mm10.fa.gz
-MM10_REF_FASTA=/exports/igmm/eddie/Glioblastoma-WGS/resources/refgenome_mmusculus/mm10.fa
-GENCODE_MM10=/exports/igmm/eddie/Glioblastoma-WGS/resources/mm10_gencode.vM25.basic.annotation.gtf
-MM10_CHROM_SIZE_NO_ALT=/exports/igmm/eddie/Glioblastoma-WGS/resources/refgenome_mmusculus/mm10.chrom_sizes.no_alt
-
 
 
