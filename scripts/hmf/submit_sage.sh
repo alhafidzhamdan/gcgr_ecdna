@@ -29,7 +29,7 @@ source $CONFIG
 ### This works for both paired and unpaired samples.
 
 # Make TMP dir for Java if not already present
-if [[! -d $JVM_TMP_DIR ]]; then
+if [[ ! -d $JVM_TMP_DIR ]]; then
   mkdir -p $JVM_TMP_DIR
 fi  
 
