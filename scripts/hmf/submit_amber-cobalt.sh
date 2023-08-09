@@ -28,6 +28,11 @@ source $CONFIG
 ## Need copynumber package installed in R (done through this conda env)
 export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/r_env/bin:$PATH
 
+# Make TMP dir for Java if not already present
+if [ [! -d $JVM_TMP_DIR ]]; then
+  mkdir -p $JVM_TMP_DIR
+fi  
+
 # Check if the RUN_TYPE variable is set
 if [ -z "$RUN_TYPE" ]; then
   echo "Error: The RUN_TYPE variable is not set."

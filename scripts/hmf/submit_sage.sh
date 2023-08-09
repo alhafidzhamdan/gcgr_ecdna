@@ -28,6 +28,11 @@ source $CONFIG
 ### Can change mode to run for lower coverage samples (e.g. 30x) by changin some key parameters as detailed in github repository.
 ### This works for both paired and unpaired samples.
 
+# Make TMP dir for Java if not already present
+if [ [! -d $JVM_TMP_DIR ]]; then
+  mkdir -p $JVM_TMP_DIR
+fi  
+
 # Check if the RUN_TYPE variable is set
 if [ -z "$RUN_TYPE" ]; then
   echo "Error: The RUN_TYPE variable is not set."
