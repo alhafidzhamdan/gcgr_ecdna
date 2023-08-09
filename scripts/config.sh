@@ -108,7 +108,6 @@ PURPLE_CNV_GENE_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/
 OUTPUT_AMBER=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/amber/${STAGE}
 OUTPUT_PURPLE=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}
 OUTPUT_COBALT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/cobalt/${STAGE}
-GC_PROFILE=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Cobalt/GC_profile.hg38.1000bp.cnp
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
 
 ## Version 5.33:
@@ -123,6 +122,7 @@ GERMLINE_BLACKLIST_VCF=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.v
 GERMLINE_BLACKLIST_BED=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.bed
 TUMOR_ONLY_DIPLOID_BED=$HMF_RESOURCES_V533/copy_number/DiploidRegions.38.bed.gz
 GERMLINE_HET_PON=$HMF_RESOURCES_V533/copy_number/GermlineHetPon.38.vcf.gz
+GC_PROFILE=$HMF_RESOURCES_V533/copy_number/GC_profile.1000bp.38.cnp
 
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
 GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
