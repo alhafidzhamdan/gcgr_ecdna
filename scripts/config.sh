@@ -114,6 +114,7 @@ GC_PROFILE=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Cob
 HET=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Amber3/GermlineHetPon.hg38.vcf.gz
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
 
+## Version 5.28:
 GERMLINE_HOTSPOTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/KnownHotspots.germline.38.vcf.gz
 SOMATIC_HOTSPOTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/KnownHotspots.somatic.38.vcf.gz
 SOMATIC_ACTIONABLE=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/ActionableCodingPanel.somatic.38.bed.gz
@@ -123,8 +124,13 @@ HMF_ENSEMBLE=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resourc
 DRIVER_GENE_PANEL=/exportHIGH_CONF_BEDs/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/common/DriverGenePanel.38.tsv
 HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/sv/known_fusion_data.38.csv
 
-### GENE_PANEL=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/DriverGenePanel.hg38.tsv
-### HOTSPOTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/KnownHotspots.hg38.vcf.gz
+## Version 5.33:
+HMF_RESOURCES_V533=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.33
+HMF_ENSEMBLE_V533=$HMF_RESOURCES_V533/common/ensembl_data
+SOMATIC_HOTSPOTS_V533=$HMF_RESOURCES_V533/variants/KnownHotspots.somatic.38.vcf.gz
+SOMATIC_ACTIONABLE_V533=$HMF_RESOURCES_V533/variants/ActionableCodingPanel.38.bed.gz
+HIGH_CONF_BED_V533=$HMF_RESOURCES_V533/variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
+
 
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
 GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
