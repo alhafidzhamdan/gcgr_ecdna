@@ -34,7 +34,7 @@ case "$RUN_TYPE" in
     echo "Running SAGE in tumour-normal mode for $PATIENT_ID..."
 
     java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
-      -threads 16 
+      -threads 16 \
       -reference ${PATIENT_ID}N -reference_bam $ALIGNED_BAM_FILE_NORMAL \
       -tumor ${PATIENT_ID}T -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
       -ref_genome_version 38 \
