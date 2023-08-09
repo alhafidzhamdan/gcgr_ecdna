@@ -91,11 +91,13 @@ ALIGNED_CRAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.cram
 ####ALIGNED_BAM_FILE=$ALIGNMENTS/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}-ready.bam
 
 ## HMF tools:
+SAGE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sage-v3.3/sage_v3.3.jar
 AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.3/amber-3.3.jar
 COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.8/cobalt-1.8.jar
 ### PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purple-2.47.jar
 PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.5/purple_v3.5.jar
 
+SAGE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.vcf.gz
 PURPLE_ANNOTATE_STRELKA_AD=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purity-ploidy-estimator/src/main/java/com/hartwig/hmftools/purple/tools/AnnotateStrelkaWithAllelicDepth.java
 PURPLE_SNV_INPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/ensemble/${PATIENT_ID}${TYPE}.ssv.snpeff.vcf.gz
 ##PURPLE_SNV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
@@ -114,9 +116,11 @@ CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
 
 GERMLINE_HOTSPOTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/KnownHotspots.germline.38.vcf.gz
 SOMATIC_HOTSPOTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/KnownHotspots.somatic.38.vcf.gz
+SOMATIC_ACTIONABLE=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/ActionableCodingPanel.somatic.38.bed.gz
+HIGH_CONF_BED=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
 GERMLINE_FREQ_DEL=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/copy_number/cohort_germline_del_freq.38.csv
 HMF_ENSEMBLE=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/common/ensembl_data
-DRIVER_GENE_PANEL=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/common/DriverGenePanel.38.tsv
+DRIVER_GENE_PANEL=/exportHIGH_CONF_BEDs/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/common/DriverGenePanel.38.tsv
 HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/sv/known_fusion_data.38.csv
 
 ### GENE_PANEL=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/DriverGenePanel.hg38.tsv
