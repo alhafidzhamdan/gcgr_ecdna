@@ -39,6 +39,10 @@ case "$RUN_TYPE" in
   "paired")
 
     echo "#### Running AMBER in tumour-normal mode for $PATIENT_ID... ####"
+    if [[ ! -d $$OUTPUT_AMBER/${PATIENT_ID}${TYPE} ]]; then 
+       mkdir -p $OUTPUT_AMBER/${PATIENT_ID}${TYPE}
+    fi
+    
     java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
        -reference ${PATIENT_ID}N \
        -reference_bam $ALIGNED_BAM_FILE_NORMAL \
@@ -50,6 +54,10 @@ case "$RUN_TYPE" in
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
+    if [[ ! -d $OUTPUT_COBALT/${PATIENT_ID}${TYPE} ]]; then
+       mkdir -p $OUTPUT_COBALT/${PATIENT_ID}${TYPE}
+    fi
+    
     java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
        -reference ${PATIENT_ID}N \
        -reference_bam $ALIGNED_BAM_FILE_NORMAL \
@@ -61,9 +69,15 @@ case "$RUN_TYPE" in
 
       echo "#### AMBER and COBALT in paired tumour-normal mode done! ####"
 
+
     ;;
   "unpaired")
+
     echo ""#### Running AMBER in tumour-only mode for $PATIENT_ID... "####"
+    if [[ ! -d $$OUTPUT_AMBER/${PATIENT_ID}${TYPE} ]]; then 
+       mkdir -p $OUTPUT_AMBER/${PATIENT_ID}${TYPE}
+    fi
+    
     java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
        -tumor ${PATIENT_ID}${TYPE} \
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
@@ -73,6 +87,10 @@ case "$RUN_TYPE" in
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
+    if [[ ! -d $OUTPUT_COBALT/${PATIENT_ID}${TYPE} ]]; then
+       mkdir -p $OUTPUT_COBALT/${PATIENT_ID}${TYPE}
+    fi
+
     java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
        -tumor ${PATIENT_ID}${TYPE} \
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
