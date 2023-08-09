@@ -46,10 +46,10 @@ case "$RUN_TYPE" in
       -tumor ${PATIENT_ID}${TYPE} -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
       -ref_genome_version 38 \
       -ref_genome $REFERENCE \
-      -hotspots $SOMATIC_HOTSPOTS_V533 \
-      -panel_bed $SOMATIC_ACTIONABLE_V533 \
-      -high_confidence_bed $HIGH_CONF_BED_V533 \
-      -ensembl_data_dir $HIGH_CONF_BED_V533 \
+      -hotspots $SOMATIC_HOTSPOTS_V532 \
+      -panel_bed $SOMATIC_ACTIONABLE_V532 \
+      -high_confidence_bed $HIGH_CONF_BED_V532 \
+      -ensembl_data_dir $HIGH_CONF_BED_V532 \
       -hotspot_min_tumor_qual 40 \
       -panel_min_tumor_qual 60 \
       -high_confidence_min_tumor_qual 100 \
