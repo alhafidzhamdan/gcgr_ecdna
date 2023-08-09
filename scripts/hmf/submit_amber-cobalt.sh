@@ -1,50 +1,55 @@
 #!/bin/bash
 
-# To run this script, do 
-# qsub -t 1-n submit_amber-cobalt.sh CONFIG IDS
-#
 #$ -N amber_cobalt
 #$ -j y
 #$ -S /bin/bash
 #$ -cwd
 #$ -l h_vmem=16G
-#$ -pe sharedmem 8
-#$ -l h_rt=72:00:00
+#$ -pe sharedmem 16
+#$ -l h_rt=12:00:00
 
 #### This script will automate amber and cobalt analyses.
+#### Can run either paired tumour-normal or tumour-only mode.
 #### Based on https://github.com/hartwigmedical/hmftools
+#### https://github.com/hartwigmedical/hmftools/tree/master/amber 
+#### https://github.com/hartwigmedical/hmftools/tree/master/cobalt
 
 ##Define SGE parameters
-
 CONFIG=$1
 IDS=$2
 STAGE=$3
 TYPE=$4
+RUN_TYPE=$5
 
-##Define files/paths
+## Define file IDs and then source config file
 PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
-
 source $CONFIG
-ALIGNED_BAM_FILE_TUMOR=$ALIGNMENTS/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}-ready.bam
-ALIGNED_BAM_FILE_NORMAL=$ALIGNMENTS/${PATIENT_ID}N/${PATIENT_ID}N/${PATIENT_ID}N-ready.bam
 
 ## Need copynumber package installed in R (done through this conda env)
 export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/r_env/bin:$PATH
 
-#### AMBER
-echo "Running Amber for ${PATIENT_ID}${TYPE}"
-java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
+# Check if the RUN_TYPE variable is set
+if [ -z "$RUN_TYPE" ]; then
+  echo "Error: The RUN_TYPE variable is not set."
+  exit 1
+fi
+   
+# Check the value of the RUN_TYPE variable
+case "$RUN_TYPE" in
+  "paired")
+
+    echo "#### Running AMBER in tumour-normal mode for $PATIENT_ID... ####"
+    java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
        -reference ${PATIENT_ID}N \
        -reference_bam $ALIGNED_BAM_FILE_NORMAL \
        -tumor ${PATIENT_ID}${TYPE} \
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
        -output_dir $OUTPUT_AMBER/${PATIENT_ID}${TYPE} \
        -threads 16 \
-       -loci $HET
+       -loci $GERMLINE_HET_PON
 
-#### COBALT
-echo "Running Cobalt for ${PATIENT_ID}${TYPE}"
-java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CountBamLinesApplication \
+    echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
+    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CountBamLinesApplication \
         -reference ${PATIENT_ID}N \
         -reference_bam $ALIGNED_BAM_FILE_NORMAL \
         -tumor ${PATIENT_ID}${TYPE} \
@@ -52,4 +57,36 @@ java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CountBam
         -output_dir $OUTPUT_COBALT/${PATIENT_ID}${TYPE} \
         -threads 16 \
         -gc_profile $GC_PROFILE
-   
+
+      echo "#### AMBER and COBALT in paired tumour-normal mode done! ####"
+
+    ;;
+  "unpaired")
+    echo ""#### Running AMBER in tumour-only mode for $PATIENT_ID... "####"
+    java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
+       -tumor ${PATIENT_ID}${TYPE} \
+       -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+       -output_dir $OUTPUT_AMBER/${PATIENT_ID}${TYPE} \
+       -threads 16 \
+       -loci $GERMLINE_HET_PON
+
+    echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
+    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CountBamLinesApplication \
+        -tumor ${PATIENT_ID}${TYPE} \
+        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+        -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
+        -output_dir $OUTPUT_COBALT/${PATIENT_ID}${TYPE} \
+        -threads 16 \
+        -gc_profile $GC_PROFILE
+
+    echo "#### AMBER and COBALT in tumour-only mode done! ####"
+
+    ;;
+  *)
+    echo "Error: Invalid value for RUN_TYPE variable."
+    exit 1
+    ;;
+esac
+
+
+

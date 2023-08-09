@@ -16,6 +16,7 @@ RUN_TYPE=$5
 
 ## TYPE represents tumour bam annotation, whether T or T1/T2 (in case of paired samples)
 
+## Define file IDs
 PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG

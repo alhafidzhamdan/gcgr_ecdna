@@ -113,7 +113,7 @@ OUTPUT_AMBER=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/amber/${STAGE}
 OUTPUT_PURPLE=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}
 OUTPUT_COBALT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/cobalt/${STAGE}
 GC_PROFILE=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Cobalt/GC_profile.hg38.1000bp.cnp
-HET=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Amber3/GermlineHetPon.hg38.vcf.gz
+GERMLINE_HET_PON=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Amber3/GermlineHetPon.hg38.vcf.gz
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
 
 ## Version 5.28:
@@ -137,6 +137,9 @@ HIGH_CONF_BED_V533=$HMF_RESOURCES_V533/variants/HG001_GRCh38_GIAB_highconf_CG-Il
 COVERAGE_PANEL_BED=$HMF_RESOURCES_V533/variants/CoverageCodingPanel.38.bed.gz
 GERMLINE_BLACKLIST_VCF=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.vcf.gz
 GERMLINE_BLACKLIST_BED=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.bed
+TUMOR_ONLY_DIPLOID_BED=$HMF_RESOURCES_V533/copy_number/DiploidRegions.38.bed.gz
+
+
 
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
 GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
