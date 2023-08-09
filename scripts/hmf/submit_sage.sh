@@ -38,7 +38,9 @@ fi
 # Check the value of the RUN_TYPE variable
 case "$RUN_TYPE" in
   "paired")
-    echo "Running SAGE in tumour-normal mode for $PATIENT_ID..."
+
+    echo "#### Running SAGE in tumour-normal mode for $PATIENT_ID... ####"
+    echo "#### For somatic variants... ####"
 
     java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
       -threads 16 \
@@ -47,7 +49,7 @@ case "$RUN_TYPE" in
       -ref_genome_version 38 \
       -ref_genome $REFERENCE \
       -hotspots $SOMATIC_HOTSPOTS_V533 \
-      -panel_bed $SOMATIC_ACTIONABLE_V533 \
+      -panel_bed $ACTIONABLE_V533 \
       -high_confidence_bed $HIGH_CONF_BED_V533 \
       -ensembl_data_dir $HMF_ENSEMBLE_V533 \
       -hotspot_min_tumor_qual 40 \
@@ -55,7 +57,29 @@ case "$RUN_TYPE" in
       -high_confidence_min_tumor_qual 100 \
       -low_confidence_min_tumor_qual 150 \
       -include_mt \
-      -out $SAGE_VCF
+      -out $SAGE_SOMATIC_VCF
+
+    echo "#### Done! ####"
+    echo "#### For germline variants... ####"
+    java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
+      -threads 16 \
+      -tumor ${PATIENT_ID}N -tumor_bam $ALIGNED_BAM_FILE_NORMAL \
+      -reference ${PATIENT_ID}${TYPE} -reference_bam $ALIGNED_BAM_FILE_TUMOR \
+      -ref_genome_version 38 \
+      -ref_genome $REFERENCE \
+      -hotspots $GERMLINE_HOTSPOTS_V533 \
+      -panel_bed $ACTIONABLE_V533 \
+      -high_confidence_bed $HIGH_CONF_BED_V533 \
+      -ensembl_data_dir $HMF_ENSEMBLE_V533 \
+      -hotspot_min_tumor_qual 40 \
+      -panel_min_tumor_qual 60 \
+      -ref_sample_count 0 -panel_only \
+      -hotspot_max_germline_vaf 100 -hotspot_max_germline_rel_raw_base_qual 100 \
+      -panel_max_germline_vaf 100 -panel_max_germline_rel_raw_base_qual 100 \
+      -include_mt \
+      -out $SAGE_GERMLINE_VCF
+    echo "#### Done! ####"
+    
     ;;
   "unpaired")
     echo "Running SAGE in tumour-only mode for $PATIENT_ID..."

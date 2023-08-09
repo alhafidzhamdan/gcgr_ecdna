@@ -97,7 +97,9 @@ COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.8/cob
 ### PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purple-2.47.jar
 PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.5/purple_v3.5.jar
 
-SAGE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.vcf.gz
+SAGE_SOMATIC_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
+SAGE_GERMLINE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.germline.vcf.gz
+
 PURPLE_ANNOTATE_STRELKA_AD=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purity-ploidy-estimator/src/main/java/com/hartwig/hmftools/purple/tools/AnnotateStrelkaWithAllelicDepth.java
 PURPLE_SNV_INPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/ensemble/${PATIENT_ID}${TYPE}.ssv.snpeff.vcf.gz
 ##PURPLE_SNV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
@@ -125,18 +127,12 @@ HMF_ENSEMBLE_V528=$HMF_RESOURCES_V528/common/ensembl_data
 DRIVER_GENE_PANEL_V528=$HMF_RESOURCES_V528/common/DriverGenePanel.38.tsv
 HMF_FUSION_V528=$HMF_RESOURCES_V528/sv/known_fusion_data.38.csv
 
-## Version 5.32:
-HMF_RESOURCES_V532=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.32
-HMF_ENSEMBLE_V532=$HMF_RESOURCES_V532/common/ensembl_data
-SOMATIC_HOTSPOTS_V532=$HMF_RESOURCES_V532/variants/KnownHotspots.somatic.38.vcf.gz
-SOMATIC_ACTIONABLE_V532=$HMF_RESOURCES_V532/variants/ActionableCodingPanel.38.bed.gz
-HIGH_CONF_BED_V532=$HMF_RESOURCES_V532/variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
-
 ## Version 5.33:
 HMF_RESOURCES_V533=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.33
 HMF_ENSEMBLE_V533=$HMF_RESOURCES_V533/common/ensembl_data
 SOMATIC_HOTSPOTS_V533=$HMF_RESOURCES_V533/variants/KnownHotspots.somatic.38.vcf.gz
-SOMATIC_ACTIONABLE_V533=$HMF_RESOURCES_V533/variants/ActionableCodingPanel.38.bed.gz
+GERMLINE_HOTSPOTS_V533=$HMF_RESOURCES_V533/variants/KnownHotspots.germline.38.vcf.gz
+ACTIONABLE_V533=$HMF_RESOURCES_V533/variants/ActionableCodingPanel.38.bed.gz
 HIGH_CONF_BED_V533=$HMF_RESOURCES_V533/variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
 
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
