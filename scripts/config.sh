@@ -115,14 +115,15 @@ HET=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Amber3/Ger
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
 
 ## Version 5.28:
-GERMLINE_HOTSPOTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/KnownHotspots.germline.38.vcf.gz
-SOMATIC_HOTSPOTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/KnownHotspots.somatic.38.vcf.gz
-SOMATIC_ACTIONABLE=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/ActionableCodingPanel.somatic.38.bed.gz
-HIGH_CONF_BED=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
-GERMLINE_FREQ_DEL=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/copy_number/cohort_germline_del_freq.38.csv
-HMF_ENSEMBLE=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/common/ensembl_data
-DRIVER_GENE_PANEL=/exportHIGH_CONF_BEDs/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/common/DriverGenePanel.38.tsv
-HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28/sv/known_fusion_data.38.csv
+HMF_RESOURCES_V528=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28
+GERMLINE_HOTSPOTS_V528=$HMF_RESOURCES_V528/variants/KnownHotspots.germline.38.vcf.gz
+SOMATIC_HOTSPOTS_V528=$HMF_RESOURCES_V528/variants/KnownHotspots.somatic.38.vcf.gz
+SOMATIC_ACTIONABLE_V528=$HMF_RESOURCES_V528/variants/ActionableCodingPanel.somatic.38.bed.gz
+HIGH_CONF_BED_V528=$HMF_RESOURCES_V528//variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
+GERMLINE_FREQ_DEL_V528=$HMF_RESOURCES_V528/copy_number/cohort_germline_del_freq.38.csv
+HMF_ENSEMBLE_V528=$HMF_RESOURCES_V528/common/ensembl_data
+DRIVER_GENE_PANEL_V528=$HMF_RESOURCES_V528/common/DriverGenePanel.38.tsv
+HMF_FUSION_V528=$HMF_RESOURCES_V528/sv/known_fusion_data.38.csv
 
 ## Version 5.32:
 HMF_RESOURCES_V532=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.32
