@@ -90,7 +90,7 @@ ALIGNED_CRAM_FILE_TUMOR=$TUMOR_DIR/${PATIENT_ID}${TYPE}-ready.cram
 ALIGNED_CRAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.cram
 ####ALIGNED_BAM_FILE=$ALIGNMENTS/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}-ready.bam
 
-## GRIDSS-PURPLE-LINX:
+## HMF tools:
 AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.3/amber-3.3.jar
 COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.8/cobalt-1.8.jar
 ### PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purple-2.47.jar
@@ -171,7 +171,6 @@ MSISENSOR=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/bin/msisensor
 MSI_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/MSI
 GATK4=/exports/igmm/software/pkg/el7/apps/bcbio/1.1.5/share/anaconda/share/gatk4-4.1.4.1-1/gatk
 GATK4_BIN=$GATK4
-#GATK4_JAR=/exports/igmm/software/pkg/el7/apps/bcbio/1.2.0/anaconda/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar
 GATK4_JAR=/gpfs/igmmfs01/software/pkg/el7/apps/bcbio/1.1.5/share/anaconda/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar
 PICARD_JAR=/exports/igmm/software/pkg/el7/apps/bcbio/1.2.0/anaconda/share/picard-2.23.8-0/picard.jar
 REPEAT_MASKER_EXE=/exports/igmm/eddie/Glioblastoma-WGS/resources/RepeatMasker/RepeatMasker
