@@ -43,75 +43,65 @@ fi
 case "$RUN_TYPE" in
   "paired")
 
-    echo "#### Running AMBER in tumour-normal mode for $PATIENT_ID... ####"
-    if [ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]; then 
-       mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
-    fi
+   echo "#### Running AMBER in tumour-normal mode for $PATIENT_ID... ####"
+   if [ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]; then 
+      mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
+   fi
     
-    java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
-       -reference ${PATIENT_ID}N \
-       -reference_bam $ALIGNED_BAM_FILE_NORMAL \
-       -ref_genome_version 38 \
-       -tumor ${PATIENT_ID}${TYPE} \
-       -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-       -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
-       -loci $GERMLINE_HET_PON \
-       -threads 16
+   java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
+      -reference ${PATIENT_ID}N \
+      -reference_bam $ALIGNED_BAM_FILE_NORMAL \
+      -ref_genome_version 38 \
+      -tumor ${PATIENT_ID}${TYPE} \
+      -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+      -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
+      -loci $GERMLINE_HET_PON \
+      -threads 16
 
-    echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
-    if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
-       mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
-    fi
+   echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
+   if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
+      mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
+   fi
 
-    if [ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]; then
+   java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
+      -reference ${PATIENT_ID}N \
+      -reference_bam $ALIGNED_BAM_FILE_NORMAL \
+      -tumor ${PATIENT_ID}${TYPE} \
+      -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+      -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
+      -gc_profile $GC_PROFILE \
+      -threads 16
 
-       java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
-              -reference ${PATIENT_ID}N \
-              -reference_bam $ALIGNED_BAM_FILE_NORMAL \
-              -tumor ${PATIENT_ID}${TYPE} \
-              -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-              -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-              -gc_profile $GC_PROFILE \
-              -threads 16
-    else 
-       echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
-    fi
-
-    echo "#### AMBER and COBALT in paired tumour-normal mode done! ####"
-
+   echo "#### AMBER and COBALT in paired tumour-normal mode done! ####"
 
     ;;
   "unpaired")
 
-    echo ""#### Running AMBER in tumour-only mode for $PATIENT_ID... "####"
-    if [ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]; then 
-       mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
-    fi
+   echo ""#### Running AMBER in tumour-only mode for $PATIENT_ID... "####"
+   if [ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]; then 
+      mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
+   fi
 
-    java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
-       -tumor ${PATIENT_ID}${TYPE} \
-       -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-       -ref_genome_version 38 \
-       -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
-       -loci $GERMLINE_HET_PON \
-       -threads 16
+   java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
+      -tumor ${PATIENT_ID}${TYPE} \
+      -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+      -ref_genome_version 38 \
+      -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
+      -loci $GERMLINE_HET_PON \
+      -threads 16
 
-    echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
-    if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
-       mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
-    fi
+   echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
+   if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
+      mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
+   fi
 
-    if [ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]; then
-       java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
-              -tumor ${PATIENT_ID}${TYPE} \
-              -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-              -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
-              -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-              -gc_profile $GC_PROFILE \
-              -threads 16
-    else
-       echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
-    fi
+   java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
+      -tumor ${PATIENT_ID}${TYPE} \
+      -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+      -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
+      -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
+      -gc_profile $GC_PROFILE \
+      -threads 16
 
     echo "#### AMBER and COBALT in tumour-only mode done! ####"
 
