@@ -11,7 +11,10 @@
 CONFIG=$1
 IDS=$2
 STAGE=$3
-RUN_TYPE=$4
+TYPE=$4
+RUN_TYPE=$5
+
+## TYPE represents tumour bam annotation, whether T or T1/T2 (in case of paired samples)
 
 PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
@@ -40,7 +43,7 @@ case "$RUN_TYPE" in
     java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
       -threads 16 \
       -reference ${PATIENT_ID}N -reference_bam $ALIGNED_BAM_FILE_NORMAL \
-      -tumor ${PATIENT_ID}T -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+      -tumor ${PATIENT_ID}${TYPE} -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
       -ref_genome_version 38 \
       -ref_genome $REFERENCE \
       -hotspots $SOMATIC_HOTSPOTS \
