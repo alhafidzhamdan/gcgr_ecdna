@@ -86,6 +86,11 @@ PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.5/pur
 SAGE_SOMATIC_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
 SAGE_GERMLINE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.germline.vcf.gz
 
+
+OUTPUT_AMBER=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/amber/${STAGE}
+OUTPUT_COBALT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/cobalt/${STAGE}
+
+
 PURPLE_ANNOTATE_STRELKA_AD=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purity-ploidy-estimator/src/main/java/com/hartwig/hmftools/purple/tools/AnnotateStrelkaWithAllelicDepth.java
 PURPLE_SNV_INPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/ensemble/${PATIENT_ID}${TYPE}.ssv.snpeff.vcf.gz
 ##PURPLE_SNV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
@@ -95,10 +100,10 @@ PURPLE_SV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${S
 ##PURPLE_CNV_GENE_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.cnv.gene.tsv
 PURPLE_CNV_GENE_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.cnv.gene.tsv
 
-OUTPUT_AMBER=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/amber/${STAGE}
 OUTPUT_PURPLE=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}
-OUTPUT_COBALT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/cobalt/${STAGE}
+
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
+
 
 ## Version 5.33:
 HMF_RESOURCES_V533=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.33

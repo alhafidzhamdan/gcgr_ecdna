@@ -28,8 +28,8 @@ source $CONFIG
 ### Can change mode to run for lower coverage samples (e.g. 30x) by changin some key parameters as detailed in github repository.
 ### This works for both paired and unpaired samples.
 
-# Make TMP dir for Java if not already present
-if [[ ! -d $WORK_DIR ]]; then
+# Make work dir for Java if not already present
+if [ ! -d $WORK_DIR ]; then
   mkdir -p $WORK_DIR
 fi  
 
@@ -45,7 +45,7 @@ case "$RUN_TYPE" in
 
     echo "#### Running SAGE in tumour-normal mode for $PATIENT_ID... ####"
 
-    if [[ ! -f $SAGE_SOMATIC_VCF ]]; then
+    if [ ! -f $SAGE_SOMATIC_VCF ]; then
       echo "#### SAGE somatic VCF file does not exist for $PATIENT_ID. Running... ####"
       java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
         -threads 16 \
@@ -67,7 +67,7 @@ case "$RUN_TYPE" in
       echo "#### Done! ####"
     fi
 
-    if [[ ! -f $SAGE_GERMLINE_VCF ]]; then
+    if [ ! -f $SAGE_GERMLINE_VCF ]; then
       echo "#### SAGE germline VCF file does not exist for $PATIENT_ID. Running... ####"
       ## Based on https://github.com/hartwigmedical/hmftools/blob/master/sage/GERMLINE.md
       java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
@@ -106,7 +106,7 @@ case "$RUN_TYPE" in
   "unpaired")
     echo "Running SAGE in tumour-only mode for $PATIENT_ID..."
 
-    if [[ ! -f $SAGE_SOMATIC_VCF ]]; then
+    if [ ! -f $SAGE_SOMATIC_VCF ]; then
       echo "#### SAGE somatic VCF file does not exist for $PATIENT_ID. Running... ####"
       java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
         -threads 16 \
