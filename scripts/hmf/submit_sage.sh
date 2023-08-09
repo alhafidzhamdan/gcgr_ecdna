@@ -29,6 +29,7 @@ source $CONFIG
 ### Can be run in tumour-only mode. 
 ### SAGE is optimised for 100x coverage samples.
 ### Can change mode to run for lower coverage samples (e.g. 30x) by changin some key parameters as detailed in github repository.
+### This works for both paired and unpaired samples.
 
 # Check if the RUN_TYPE variable is set
 if [ -z "$RUN_TYPE" ]; then
@@ -102,6 +103,27 @@ case "$RUN_TYPE" in
     ;;
   "unpaired")
     echo "Running SAGE in tumour-only mode for $PATIENT_ID..."
+
+    if [[ ! -f $SAGE_SOMATIC_VCF ]]; then
+      echo "#### SAGE somatic VCF file does not exist for $PATIENT_ID. Running... ####"
+      java $JVM_OPTS $JVM_TMP_DIR -cp $SAGE_JAR com.hartwig.hmftools.sage.SageApplication \
+        -threads 16 \
+        -tumor ${PATIENT_ID}${TYPE} -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+        -ref_genome_version 38 \
+        -ref_genome $REFERENCE \
+        -hotspots $SOMATIC_HOTSPOTS_V533 \
+        -panel_bed $ACTIONABLE_V533 \
+        -high_confidence_bed $HIGH_CONF_BED_V533 \
+        -ensembl_data_dir $HMF_ENSEMBLE_V533 \
+        -hotspot_min_tumor_qual 40 \
+        -panel_min_tumor_qual 60 \
+        -high_confidence_min_tumor_qual 100 \
+        -low_confidence_min_tumor_qual 150 \
+        -include_mt \
+        -out $SAGE_SOMATIC_VCF
+
+      echo "#### Done! ####"
+    fi
 
     ;;
   *)
