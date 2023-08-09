@@ -21,10 +21,6 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
 
-####################################################################################################
-############################################## SAGE ################################################
-####################################################################################################
-
 ### Based on https://github.com/hartwigmedical/hmftools/blob/master/sage/README.md
 ### Also draws from https://github.com/toddajohnson
 ### Can be run in tumour-only mode. 

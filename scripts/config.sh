@@ -64,10 +64,6 @@ GISTIC_SEGMENTS=$CNV/gistic2/seg_files
 PLOT_MODEL_SEGMENTS=$CNV/plot_model_segments
 CALLED_COPY_RATIOS=$CNV/called_copy_ratios
 
-MANTA_UNFILTERED_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/bcbio/${PATIENT_ID}/${PATIENT_ID}T/${PATIENT_ID}-manta.vcf.gz 
-MANTA_HIGH_CONF_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/manta/${PATIENT_ID}-manta.high.conf.vcf.gz
-MANTA_LOW_CONF_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/manta/${PATIENT_ID}-manta.low.conf.vcf.gz
-
 WORK_DIR=$BCBIO_WORK/$PATIENT_ID
 JVM_OPTS="-Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=1 -Xms12g -Xmx12g"
 JVM_TMP_DIR="-Djava.io.tmpdir=$WORK_DIR/bcbiotx"
@@ -88,12 +84,12 @@ ALIGNED_BAM_FILE_TUMOR=$TUMOR_DIR/${PATIENT_ID}${TYPE}-ready.bam
 ALIGNED_BAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.bam
 ALIGNED_CRAM_FILE_TUMOR=$TUMOR_DIR/${PATIENT_ID}${TYPE}-ready.cram 
 ALIGNED_CRAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.cram
-####ALIGNED_BAM_FILE=$ALIGNMENTS/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}-ready.bam
 
 ## HMF tools:
 SAGE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sage-v3.3/sage_v3.3.jar
-AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.3/amber-3.3.jar
-COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.8/cobalt-1.8.jar
+AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.9.1/amber-3.9.1.jar
+COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.15.2/cobalt_v1.15.2.jar
+
 ### PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purple-2.47.jar
 PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.5/purple_v3.5.jar
 
@@ -116,17 +112,6 @@ GC_PROFILE=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Cob
 GERMLINE_HET_PON=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Amber3/GermlineHetPon.hg38.vcf.gz
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
 
-## Version 5.28:
-HMF_RESOURCES_V528=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_pipeline_resources_38_v5.28
-GERMLINE_HOTSPOTS_V528=$HMF_RESOURCES_V528/variants/KnownHotspots.germline.38.vcf.gz
-SOMATIC_HOTSPOTS_V528=$HMF_RESOURCES_V528/variants/KnownHotspots.somatic.38.vcf.gz
-SOMATIC_ACTIONABLE_V528=$HMF_RESOURCES_V528/variants/ActionableCodingPanel.somatic.38.bed.gz
-HIGH_CONF_BED_V528=$HMF_RESOURCES_V528//variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
-GERMLINE_FREQ_DEL_V528=$HMF_RESOURCES_V528/copy_number/cohort_germline_del_freq.38.csv
-HMF_ENSEMBLE_V528=$HMF_RESOURCES_V528/common/ensembl_data
-DRIVER_GENE_PANEL_V528=$HMF_RESOURCES_V528/common/DriverGenePanel.38.tsv
-HMF_FUSION_V528=$HMF_RESOURCES_V528/sv/known_fusion_data.38.csv
-
 ## Version 5.33:
 HMF_RESOURCES_V533=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.33
 HMF_ENSEMBLE_V533=$HMF_RESOURCES_V533/common/ensembl_data
@@ -138,7 +123,6 @@ COVERAGE_PANEL_BED=$HMF_RESOURCES_V533/variants/CoverageCodingPanel.38.bed.gz
 GERMLINE_BLACKLIST_VCF=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.vcf.gz
 GERMLINE_BLACKLIST_BED=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.bed
 TUMOR_ONLY_DIPLOID_BED=$HMF_RESOURCES_V533/copy_number/DiploidRegions.38.bed.gz
-
 
 
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
