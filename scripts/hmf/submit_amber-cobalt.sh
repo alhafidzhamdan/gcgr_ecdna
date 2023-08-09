@@ -42,6 +42,7 @@ case "$RUN_TYPE" in
     java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
        -reference ${PATIENT_ID}N \
        -reference_bam $ALIGNED_BAM_FILE_NORMAL \
+       -ref_genome_version 38 \
        -tumor ${PATIENT_ID}${TYPE} \
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
        -output_dir $OUTPUT_AMBER/${PATIENT_ID}${TYPE} \
@@ -49,14 +50,14 @@ case "$RUN_TYPE" in
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
-    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CountBamLinesApplication \
-        -reference ${PATIENT_ID}N \
-        -reference_bam $ALIGNED_BAM_FILE_NORMAL \
-        -tumor ${PATIENT_ID}${TYPE} \
-        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-        -output_dir $OUTPUT_COBALT/${PATIENT_ID}${TYPE} \
-        -threads 16 \
-        -gc_profile $GC_PROFILE
+    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
+       -reference ${PATIENT_ID}N \
+       -reference_bam $ALIGNED_BAM_FILE_NORMAL \
+       -tumor ${PATIENT_ID}${TYPE} \
+       -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+       -output_dir $OUTPUT_COBALT/${PATIENT_ID}${TYPE} \
+       -threads 16 \
+       -gc_profile $GC_PROFILE
 
       echo "#### AMBER and COBALT in paired tumour-normal mode done! ####"
 
@@ -66,18 +67,19 @@ case "$RUN_TYPE" in
     java $JVM_OPTS $JVM_TMP_DIR -cp $AMBER_JAR com.hartwig.hmftools.amber.AmberApplication \
        -tumor ${PATIENT_ID}${TYPE} \
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+       -ref_genome_version 38 \
        -output_dir $OUTPUT_AMBER/${PATIENT_ID}${TYPE} \
        -threads 16 \
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
-    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CountBamLinesApplication \
-        -tumor ${PATIENT_ID}${TYPE} \
-        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-        -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
-        -output_dir $OUTPUT_COBALT/${PATIENT_ID}${TYPE} \
-        -threads 16 \
-        -gc_profile $GC_PROFILE
+    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
+       -tumor ${PATIENT_ID}${TYPE} \
+       -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+       -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
+       -output_dir $OUTPUT_COBALT/${PATIENT_ID}${TYPE} \
+       -threads 16 \
+       -gc_profile $GC_PROFILE
 
     echo "#### AMBER and COBALT in tumour-only mode done! ####"
 
