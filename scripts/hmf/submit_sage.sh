@@ -83,7 +83,6 @@ case "$RUN_TYPE" in
         -low_confidence_min_tumor_qual 150 \
         -ref_sample_count 0 \
         -panel_only \
-        -coverage_bed $COVERAGE_PANEL_BED \
         -hotspot_max_germline_vaf 100 \
         -hotspot_max_germline_rel_raw_base_qual 100 \
         -high_confidence_max_germline_vaf 100 \
