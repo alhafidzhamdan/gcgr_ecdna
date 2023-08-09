@@ -62,17 +62,22 @@ case "$RUN_TYPE" in
     if [[ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]]; then
        mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
     fi
-    
-    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
-       -reference ${PATIENT_ID}N \
-       -reference_bam $ALIGNED_BAM_FILE_NORMAL \
-       -tumor ${PATIENT_ID}${TYPE} \
-       -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-       -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-       -threads 16 \
-       -gc_profile $GC_PROFILE
 
-      echo "#### AMBER and COBALT in paired tumour-normal mode done! ####"
+    if [[ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]]; then
+
+       java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
+              -reference ${PATIENT_ID}N \
+              -reference_bam $ALIGNED_BAM_FILE_NORMAL \
+              -tumor ${PATIENT_ID}${TYPE} \
+              -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+              -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
+              -threads 16 \
+              -gc_profile $GC_PROFILE
+    else 
+       echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
+    fi
+
+    echo "#### AMBER and COBALT in paired tumour-normal mode done! ####"
 
 
     ;;
@@ -96,13 +101,17 @@ case "$RUN_TYPE" in
        mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
     fi
 
-    java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
-       -tumor ${PATIENT_ID}${TYPE} \
-       -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
-       -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
-       -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-       -threads 16 \
-       -gc_profile $GC_PROFILE
+    if [[ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]]; then
+       java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
+              -tumor ${PATIENT_ID}${TYPE} \
+              -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
+              -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
+              -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
+              -threads 16 \
+              -gc_profile $GC_PROFILE
+    else
+       echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
+    fi
 
     echo "#### AMBER and COBALT in tumour-only mode done! ####"
 
