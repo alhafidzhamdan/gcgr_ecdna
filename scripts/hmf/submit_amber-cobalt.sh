@@ -29,8 +29,8 @@ source $CONFIG
 export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/r_env/bin:$PATH
 
 # Make TMP dir for Java if not already present
-if [[ ! -d $JVM_TMP_DIR ]]; then
-  mkdir -p $JVM_TMP_DIR
+if [[ ! -d $WORK_DIR ]]; then
+  mkdir -p $WORK_DIR
 fi  
 
 # Check if the RUN_TYPE variable is set
