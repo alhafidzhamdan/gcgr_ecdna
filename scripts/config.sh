@@ -66,7 +66,7 @@ CALLED_COPY_RATIOS=$CNV/called_copy_ratios
 
 WORK_DIR=$BCBIO_WORK/$PATIENT_ID
 JVM_OPTS="-Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=1 -Xms12g -Xmx12g"
-JVM_TMP_DIR="-Djava.io.tmpdir=$WORK_DIR/bcbiotx"
+JVM_TMP_DIR="-Djava.io.tmpdir=$WORK_DIR"
 JAVA=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin/java
 
 GERMLINE_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/germline/

@@ -28,8 +28,8 @@ source $CONFIG
 ## Need copynumber package installed in R (done through this conda env)
 export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/r_env/bin:$PATH
 
-# Make TMP dir for Java if not already present
-if [[ ! -d $WORK_DIR ]]; then
+# Make work dir for Java if not already present
+if [ ! -d $WORK_DIR ]; then
   mkdir -p $WORK_DIR
 fi  
 
@@ -44,7 +44,7 @@ case "$RUN_TYPE" in
   "paired")
 
     echo "#### Running AMBER in tumour-normal mode for $PATIENT_ID... ####"
-    if [[ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]]; then 
+    if [ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]; then 
        mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
     fi
     
@@ -58,11 +58,11 @@ case "$RUN_TYPE" in
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
-    if [[ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]]; then
+    if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
        mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
     fi
 
-    if [[ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]]; then
+    if [ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]; then
 
        java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
               -reference ${PATIENT_ID}N \
@@ -82,7 +82,7 @@ case "$RUN_TYPE" in
   "unpaired")
 
     echo ""#### Running AMBER in tumour-only mode for $PATIENT_ID... "####"
-    if [[ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]]; then 
+    if [ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]; then 
        mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
     fi
 
@@ -94,11 +94,11 @@ case "$RUN_TYPE" in
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
-    if [[ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]]; then
+    if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
        mkdir -p $OUTPUT_COBALT/${PATIENT_ID}
     fi
 
-    if [[ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]]; then
+    if [ ! -f ${PATIENT_ID}${TYPE}.cobalt.ratio.tsv.gz ]; then
        java $JVM_OPTS $JVM_TMP_DIR -cp $COBALT_JAR com.hartwig.hmftools.cobalt.CobaltApplication \
               -tumor ${PATIENT_ID}${TYPE} \
               -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
