@@ -44,7 +44,7 @@ case "$RUN_TYPE" in
   "paired")
 
     echo "#### Running AMBER in tumour-normal mode for $PATIENT_ID... ####"
-    if [[ ! -d $$OUTPUT_AMBER/${PATIENT_ID} ]]; then 
+    if [[ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]]; then 
        mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
     fi
     
@@ -55,7 +55,6 @@ case "$RUN_TYPE" in
        -tumor ${PATIENT_ID}${TYPE} \
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
        -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
-       -threads 16 \
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
@@ -71,7 +70,6 @@ case "$RUN_TYPE" in
               -tumor ${PATIENT_ID}${TYPE} \
               -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
               -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-              -threads 16 \
               -gc_profile $GC_PROFILE
     else 
        echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
@@ -84,7 +82,7 @@ case "$RUN_TYPE" in
   "unpaired")
 
     echo ""#### Running AMBER in tumour-only mode for $PATIENT_ID... "####"
-    if [[ ! -d $$OUTPUT_AMBER/${PATIENT_ID} ]]; then 
+    if [[ ! -d $OUTPUT_AMBER/${PATIENT_ID} ]]; then 
        mkdir -p $OUTPUT_AMBER/${PATIENT_ID}
     fi
 
@@ -93,7 +91,6 @@ case "$RUN_TYPE" in
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
        -ref_genome_version 38 \
        -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
-       -threads 16 \
        -loci $GERMLINE_HET_PON
 
     echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
@@ -107,7 +104,6 @@ case "$RUN_TYPE" in
               -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
               -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
               -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-              -threads 16 \
               -gc_profile $GC_PROFILE
     else
        echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
