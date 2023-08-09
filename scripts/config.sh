@@ -134,6 +134,9 @@ SOMATIC_HOTSPOTS_V533=$HMF_RESOURCES_V533/variants/KnownHotspots.somatic.38.vcf.
 GERMLINE_HOTSPOTS_V533=$HMF_RESOURCES_V533/variants/KnownHotspots.germline.38.vcf.gz
 ACTIONABLE_V533=$HMF_RESOURCES_V533/variants/ActionableCodingPanel.38.bed.gz
 HIGH_CONF_BED_V533=$HMF_RESOURCES_V533/variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz
+COVERAGE_PANEL_BED=$HMF_RESOURCES_V533/variants/CoverageCodingPanel.38.bed.gz
+GERMLINE_BLACKLIST_VCF=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.vcf.gz
+GERMLINE_BLACKLIST_BED=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.bed
 
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
 GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
