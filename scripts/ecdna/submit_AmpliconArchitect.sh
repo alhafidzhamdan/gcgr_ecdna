@@ -47,6 +47,9 @@ AA_BED_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_PURPLE_BED
 AA_RESULTS_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_PURPLE_RESULTS
 ALIGNED_BAM_FILE_TUMOR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/alignments/${SAMPLE_ID}/${SAMPLE_ID}/${SAMPLE_ID}-ready.bam
 
+
+
+
 ## Main AA Script:
 if [[ -f $CNV_BED && ! -f $AA_BED_DIR/${PATIENT_ID}${TYPE}.bed ]]
 then

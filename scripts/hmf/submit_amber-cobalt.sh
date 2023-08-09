@@ -71,7 +71,7 @@ case "$RUN_TYPE" in
               -tumor ${PATIENT_ID}${TYPE} \
               -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
               -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-              -gc_profile $GC_PROFILE \ 
+              -gc_profile $GC_PROFILE \
               -threads 16
     else 
        echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"

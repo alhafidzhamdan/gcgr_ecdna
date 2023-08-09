@@ -54,16 +54,6 @@ CONSENSUS_DIR=$SSV/consensus
 ENSEMBLE_DIR=$SSV/ensemble
 ENSEMBLE_VCF=$ENSEMBLE_DIR/${STAGE}/${PATIENT_ID}${TYPE}.ssv.vcf.gz
 
-CNV=$WGS/variants/cnv
-PREPROCESSED_INTERVALS=$CNV/interval_list
-READ_COUNTS=$CNV/read_counts
-COPY_RATIOS=$CNV/copy_ratios
-ALLELIC_COUNTS=$CNV/allelic_counts
-MODEL_SEGMENTS=$CNV/model_segments
-GISTIC_SEGMENTS=$CNV/gistic2/seg_files
-PLOT_MODEL_SEGMENTS=$CNV/plot_model_segments
-CALLED_COPY_RATIOS=$CNV/called_copy_ratios
-
 WORK_DIR=$BCBIO_WORK/$PATIENT_ID
 JVM_OPTS="-Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=1 -Xms12g -Xmx12g"
 JVM_TMP_DIR="-Djava.io.tmpdir=$WORK_DIR"
