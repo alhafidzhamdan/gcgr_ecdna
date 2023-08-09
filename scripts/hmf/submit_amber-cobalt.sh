@@ -55,7 +55,8 @@ case "$RUN_TYPE" in
        -tumor ${PATIENT_ID}${TYPE} \
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
        -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
-       -loci $GERMLINE_HET_PON
+       -loci $GERMLINE_HET_PON \
+       -threads 16
 
     echo "#### Running COBALT in tumour-normal mode for $PATIENT_ID... ####"
     if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
@@ -70,7 +71,8 @@ case "$RUN_TYPE" in
               -tumor ${PATIENT_ID}${TYPE} \
               -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
               -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-              -gc_profile $GC_PROFILE
+              -gc_profile $GC_PROFILE \ 
+              -threads 16
     else 
        echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
     fi
@@ -91,7 +93,8 @@ case "$RUN_TYPE" in
        -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
        -ref_genome_version 38 \
        -output_dir $OUTPUT_AMBER/${PATIENT_ID} \
-       -loci $GERMLINE_HET_PON
+       -loci $GERMLINE_HET_PON \
+       -threads 16
 
     echo "#### Running COBALT in tumour-only mode for $PATIENT_ID... ####"
     if [ ! -d $OUTPUT_COBALT/${PATIENT_ID} ]; then
@@ -104,7 +107,8 @@ case "$RUN_TYPE" in
               -tumor_bam $ALIGNED_BAM_FILE_TUMOR \
               -tumor_only_diploid_bed $TUMOR_ONLY_DIPLOID_BED \
               -output_dir $OUTPUT_COBALT/${PATIENT_ID} \
-              -gc_profile $GC_PROFILE
+              -gc_profile $GC_PROFILE \
+              -threads 16
     else
        echo "#### COBALT output already exists for $PATIENT_ID. Skipping... ####"
     fi
