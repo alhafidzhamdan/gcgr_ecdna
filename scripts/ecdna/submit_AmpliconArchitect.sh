@@ -36,6 +36,7 @@ source $CONFIG
 ## https://github.com/jluebeck/PrepareAA
 ## Installation instructions -> https://github.com/jluebeck/AmpliconArchitect#installation
 ## Mosek itself can be installed via conda.
+## But for my purpose, I installed manually as per https://github.com/virajbdeshpande/AmpliconArchitect#installation
 ## Will need mosek version 8 licence installed. Refer to https://github.com/jluebeck/AmpliconArchitect#installation
 ## Obtain licence here: https://www.mosek.com/products/academic-licenses/
 
@@ -125,7 +126,7 @@ else
     echo "CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping PURPLE... "
 fi
 
-source activate AA
+export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
 export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/data_repo
 
 ## Run AmplifiedIntervals.py to generate AA input bed file
