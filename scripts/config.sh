@@ -19,7 +19,7 @@ READS=$WGS/raw/reads
 LANES=$WGS/raw/lanes
 BCBIO_CONFIG=$BASE/bcbio/config
 BCBIO_WORK=$BASE/bcbio/work
-SCRIPTS=$BASE/scripts/gcgr_ecdna/scripts/bcbio
+SCRIPTS=$BASE/scripts ## needs cleaning
 RESOURCES=$BASE/resources
 METRICS=$WGS/metrics
 PON=$METRICS/pon
@@ -79,7 +79,7 @@ ALIGNED_CRAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.cram
 SAGE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sage-v3.3/sage_v3.3.jar
 AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.9.1/amber-3.9.1.jar
 COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.15.2/cobalt_v1.15.2.jar
-PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmftools-purple-v3.9/purple_v3.9.jar
+PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.9/purple_v3.9.jar
 
 ## Files:
 SAGE_SOMATIC_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
@@ -97,7 +97,7 @@ OUTPUT_PURPLE=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
 
 ## Version 5.33:
-HMF_RESOURCES_V533=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.33
+HMF_RESOURCES_V533=$RESOURCES/hmf_dna_pipeline_resources.38_v5.33
 HMF_ENSEMBLE_V533=$HMF_RESOURCES_V533/common/ensembl_data
 SOMATIC_HOTSPOTS_V533=$HMF_RESOURCES_V533/variants/KnownHotspots.somatic.38.vcf.gz
 GERMLINE_HOTSPOTS_V533=$HMF_RESOURCES_V533/variants/KnownHotspots.germline.38.vcf.gz
@@ -117,25 +117,26 @@ HELI_REP_ORIGIN=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resource
 VIRAL_HOST_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/viral_host_ref.csv
 ###HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/known_fusion_data.csv  
 
+## GRIDSS and GRIPSS:
+GRIDSS=$SCRIPTS/gridss-2.10.0/scripts/gridss.sh
+GRIDSS_JAR=$SCRIPTS/gridss-2.10.0/gridss-2.10.0-gridss-jar-with-dependencies.jar
+GRIDSS_RM=$SCRIPTS/gridss-2.10.0/scripts/gridss_annotate_vcf_repeatmasker.sh
+GRIDSS_SOMATIC_FILTER=$SCRIPTS/gridss-2.10.0/scripts/gridss_somatic_filter.R
+GRIPSS_JAR=$SCRIPTS/hmftools-gripss-v1.7/gripss-1.7.jar
 
-## GRIDSS:
-GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
-GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
-GRIDSS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/scripts/gridss.sh
-GRIDSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/gridss-2.10.0-gridss-jar-with-dependencies.jar
-GRIDSS_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results
-GRIDSS_ASSEMBLY=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${PATIENT_ID}${TYPE}.assembly.bam
-GRIDSS_WORKING_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/working_dir/${PATIENT_ID}${TYPE}
-GRIDSS_RAW_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.raw.vcf
-GRIDSS_RM=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/scripts/gridss_annotate_vcf_repeatmasker.sh
-GRIDSS_SOMATIC_FILTER=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/scripts/gridss_somatic_filter.R
-GRIDSS_FINAL_FILTERED=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.final.filtered.vcf
-GRIDSS_FINAL_FILTERED_RM=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.final.filtered.rm.vcf
-GRIDSS_PON_FILTERED=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.pon.filtered.vcf
-GRIDSS_PON_FILTERED_RM=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${STAGE}/${PATIENT_ID}${TYPE}.gridss.pon.filtered.rm.vcf
-GRIDSS_PON=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/pondir/${BATCH}
+GRIDSS_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss
+GRIDSS_OUTPUT=$GRIDSS_DIR/results
+GRIDSS_ASSEMBLY=$GRIDSS_OUTPUT/${PATIENT_ID}${TYPE}.assembly.bam
+GRIDSS_WORKING_DIR=$GRIDSS_DIR/working_dir/${PATIENT_ID}${TYPE}
+GRIDSS_RAW_VCF=$GRIDSS_OUTPUT/${STAGE}/${PATIENT_ID}${TYPE}.gridss.raw.vcf
+GRIDSS_FINAL_FILTERED=$GRIDSS_OUTPUT/${STAGE}/${PATIENT_ID}${TYPE}.gridss.final.filtered.vcf
+GRIDSS_FINAL_FILTERED_RM=$GRIDSS_OUTPUT/${STAGE}/${PATIENT_ID}${TYPE}.gridss.final.filtered.rm.vcf
+GRIDSS_PON_FILTERED=$GRIDSS_OUTPUT/${STAGE}/${PATIENT_ID}${TYPE}.gridss.pon.filtered.vcf
+GRIDSS_PON_FILTERED_RM=$GRIDSS_OUTPUT/${STAGE}/${PATIENT_ID}${TYPE}.gridss.pon.filtered.rm.vcf
+GRIDSS_PON=$GRIDSS_DIR/pondir/${BATCH}
 LIBGRIDSS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss
 GRIDSS_PLOT_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/plotdir
+GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
 
 ### LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sv-linx-v1.11/sv-linx_v1.11.jar
 LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-linx-v1.20/linx_v1.20.jar
@@ -154,7 +155,6 @@ AA_CNV=$AA_PURPLE_BED_DIR/${SAMPLE_ID}.bed
 AA_RESULTS_DIR=$VARIANTS/ecdna/AA_PURPLE_RESULTS
 AC=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconClassifier/amplicon_classifier.py
 AA_CLASSIFIER_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_classifier/AC_v0.4.10/${STAGE}
-
 
 ## LILAC:
 REF_NO_ALT=$RESOURCES/refgenome38/hg38_no_alt/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna.gz

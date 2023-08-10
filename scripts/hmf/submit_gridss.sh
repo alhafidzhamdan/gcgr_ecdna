@@ -18,15 +18,13 @@
 
 CONFIG=$1
 IDS=$2
+STAGE=$3
+TYPE=$4
+RUN_TYPE=$5
 
 PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
-ALIGNED_BAM_FILE_TUMOR=$ALIGNMENTS/${PATIENT_ID}T2/${PATIENT_ID}T2/${PATIENT_ID}T2-ready.bam
-ALIGNED_BAM_FILE_NORMAL=$ALIGNMENTS/${PATIENT_ID}N/${PATIENT_ID}N/${PATIENT_ID}N-ready.bam
-GRIDSS_RAW=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${PATIENT_ID}T2.gridss.raw.vcf.gz
-GRIDSS_ASSEMBLY=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${PATIENT_ID}T2.assembly.bam
-GRIDSS_WORKING_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/working_dir/${PATIENT_ID}T2
 
 $GRIDSS \
     --reference $REFERENCE \
@@ -38,7 +36,7 @@ $GRIDSS \
     --jar $GRIDSS_JAR \
     --steps All \
     --maxcoverage 50000 \
-    --labels ${PATIENT_ID}N,${PATIENT_ID}T2 \
+    --labels ${PATIENT_ID}N,${PATIENT_ID}${TYPE} \
     $ALIGNED_BAM_FILE_NORMAL $ALIGNED_BAM_FILE_TUMOR
 
 
