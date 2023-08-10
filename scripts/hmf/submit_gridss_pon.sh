@@ -19,6 +19,8 @@ BATCH=$3
 
 source $CONFIG
 
+mkdir -p $GRIDSS_PON
+
 java -Xmx8g -cp $GRIDSS_JAR gridss.GeneratePonBedpe \
 	$(ls -1 $GRIDSS_OUTPUT/GCGR*.gridss.raw.vcf | awk ' { print "INPUT=" $0 }') \
 	O=$GRIDSS_PON/gridss_pon_breakpoint.raw.bedpe \
