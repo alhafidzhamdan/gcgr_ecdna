@@ -26,12 +26,10 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
 
-GRIDSS_ASSEMBLY=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/
-
 $GRIDSS \
     --reference $REFERENCE \
     --output $GRIDSS_RAW \
-    --assembly $GRIDSS_ASSEMBLY \
+    --assembly $GRIDSS_OUTPUT \
     --jvmheap 32g \
     --workingdir $GRIDSS_WORKING_DIR \
     --blacklist $ENCODE_BLACKLIST \
