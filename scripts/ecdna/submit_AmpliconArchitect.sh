@@ -76,8 +76,8 @@ then
             -tumor ${PATIENT_ID}T \
             -output_dir $PURPLE_TMP_DIR \
             -threads 16 \
-            -amber $AMBER_DIR \
-            -cobalt $COBALT_DIR \
+            -amber $OUTPUT_AMBER/${PATIENT_ID} \
+            -cobalt $OUTPUT_COBALT/${PATIENT_ID} \
             -gc_profile $GC_PROFILE \
             -ref_genome $REFERENCE \
             -ref_genome_version 38 \
@@ -91,8 +91,8 @@ then
             -tumor ${PATIENT_ID}T \
             -output_dir $PURPLE_TMP_DIR \
             -threads 16 \
-            -amber $AMBER_DIR \
-            -cobalt $COBALT_DIR \
+            -amber $OUTPUT_AMBER/${PATIENT_ID} \
+            -cobalt $OUTPUT_COBALT/${PATIENT_ID} \
             -gc_profile $GC_PROFILE \
             -ref_genome $REFERENCE \
             -ref_genome_version 38 \
