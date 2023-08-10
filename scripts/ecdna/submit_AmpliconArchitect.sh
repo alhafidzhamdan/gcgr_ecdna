@@ -141,31 +141,29 @@ then
             --gain 5 \
             --cnsize_min 100000
     echo "#### AmplifiedIntervals.py completed for ${SAMPLE_ID} ####"
-    
+
 fi
 
-
-
 ## Run AA main script
-# if [ ! -d $AA_RESULTS_DIR/${PATIENT_ID}${TYPE} ]
-# then
-#     echo "Creating output directory for $SAMPLE_ID"
-#     mkdir -p $AA_RESULTS_DIR/${PATIENT_ID}${TYPE}
-# else
-#     echo "Output directory for $SAMPLE_ID already created"
-# fi
+if [ ! -d $AA_RESULTS_DIR/${SAMPLE_ID} ]
+then
+    echo "#### Creating output directory for $SAMPLE_ID ####"
+    mkdir -p $AA_RESULTS_DIR/${SAMPLE_ID}
+else
+    echo "#### Output directory for $SAMPLE_ID already created ####"
+fi
 
-# if [ -d $AA_RESULTS_DIR/${PATIENT_ID}${TYPE} ]
-# then
-# echo "Running AA for ${SAMPLE_ID} using $AA_BED_DIR/${PATIENT_ID}${TYPE}.bed, only including segments with CN 5 or more, and with min CN size 100000"
-#     cd $AA_RESULTS_DIR/${PATIENT_ID}${TYPE}
-#     python $AA \
-#         --bam $ALIGNED_BAM_FILE_TUMOR \
-#         --bed $AA_BED_DIR/${PATIENT_ID}${TYPE}.bed \
-#         --out ${PATIENT_ID}${TYPE} \
-#         --ref GRCh38
-#     echo "AA run completed for ${PATIENT_ID}${TYPE}"
-# fi
+if [ -d $AA_RESULTS_DIR/${SAMPLE_ID} ]
+then
+    echo "#### Running AA for ${SAMPLE_ID} using $AA_CNV, only including segments with CN 5 or more, and with min CN size 100000 ####"
+    cd $AA_RESULTS_DIR/${SAMPLE_ID}
+    python $AA \
+        --bam $ALIGNED_BAM_FILE_TUMOR \
+        --bed $AA_CNV \
+        --out ${SAMPLE_ID} \
+        --ref GRCh38
+    echo "#### AA run completed for ${SAMPLE_ID} ####"
+fi
     
     
 
