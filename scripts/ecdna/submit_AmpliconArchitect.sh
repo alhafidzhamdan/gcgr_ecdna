@@ -44,6 +44,7 @@ source $CONFIG
 
 ## AmpliconArchitect relies on python 2, installed within a separate conda environment `AA`
 ## Requires pysam, numpy, matplotlib, scipy 
+## PURPLE .somatic.tsv output needs to formatted as per https://github.com/virajbdeshpande/AmpliconArchitect/issues/31
 ## Preprocess cnv-kit generated bed files to filter out unplaced contigs, and to include
 ## only gain of 5 or more, and segment size 100000 or more
 ## And will need an aligned tumour bam file.
@@ -89,7 +90,7 @@ then
 
         echo "#### Formatting for AmplifiedIntervals.py... ####"
         
-        cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' > $AI_CNV
+        cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t&/' > $AI_CNV
         rm -rf $PURPLE_TMP_DIR
 
             ;;
@@ -111,7 +112,7 @@ then
         
         echo "#### Formatting for AmplifiedIntervals.py... ####"
 
-        cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' > $AI_CNV
+        cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t&/' > $AI_CNV
         rm -rf $PURPLE_TMP_DIR
 
     ;;
