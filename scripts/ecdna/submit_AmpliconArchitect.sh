@@ -164,6 +164,3 @@ then
         --ref GRCh38
     echo "#### AA run completed for ${SAMPLE_ID} ####"
 fi
-    
-if [ ]
-

@@ -158,13 +158,6 @@ AA_CNV=$AA_PURPLE_BED_DIR/${SAMPLE_ID}.bed
 AA_RESULTS_DIR=$VARIANTS/ecdna/AA_PURPLE_RESULTS
 
 
-
-
-
-
-
-
-
 ## LILAC:
 REF_NO_ALT=$RESOURCES/refgenome38/hg38_no_alt/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna.gz
 ####LILAC_JAR=$BASE/scripts/hmftools-lilac-v1.2/lilac_v1.2.jar
