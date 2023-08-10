@@ -81,28 +81,20 @@ AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.9.1/amb
 COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.15.2/cobalt_v1.15.2.jar
 PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmftools-purple-v3.9/purple_v3.9.jar
 
-
 ## Files:
 SAGE_SOMATIC_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
 SAGE_GERMLINE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.germline.vcf.gz
-
 OUTPUT_AMBER=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/amber/${STAGE}
 OUTPUT_COBALT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/cobalt/${STAGE}
-
-
 PURPLE_ANNOTATE_STRELKA_AD=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purity-ploidy-estimator/src/main/java/com/hartwig/hmftools/purple/tools/AnnotateStrelkaWithAllelicDepth.java
 PURPLE_SNV_INPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/ensemble/${PATIENT_ID}${TYPE}.ssv.snpeff.vcf.gz
 ##PURPLE_SNV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
 PURPLE_SNV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
-
 PURPLE_SV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.sv.vcf.gz
 ##PURPLE_CNV_GENE_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.cnv.gene.tsv
 PURPLE_CNV_GENE_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.cnv.gene.tsv
-
 OUTPUT_PURPLE=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}
-
 CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
-
 
 ## Version 5.33:
 HMF_RESOURCES_V533=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmf_dna_pipeline_resources.38_v5.33
@@ -118,6 +110,15 @@ TUMOR_ONLY_DIPLOID_BED=$HMF_RESOURCES_V533/copy_number/DiploidRegions.38.bed.gz
 GERMLINE_HET_PON=$HMF_RESOURCES_V533/copy_number/GermlineHetPon.38.vcf.gz
 GC_PROFILE=$HMF_RESOURCES_V533/copy_number/GC_profile.1000bp.38.cnp
 
+## Other resources:
+FRAGILE_SITES=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/fragile_sites_hmf.hg38.csv
+LINE_ELEMENTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/line_elements.hg38.csv
+HELI_REP_ORIGIN=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/heli_rep_origins.bed
+VIRAL_HOST_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/viral_host_ref.csv
+###HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/known_fusion_data.csv  
+
+
+## GRIDSS:
 GRIPSS_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-gripss-v1.7/gripss-1.7.jar
 GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
 GRIDSS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss-2.10.0/scripts/gridss.sh
@@ -140,11 +141,6 @@ GRIDSS_PLOT_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/plot
 LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-linx-v1.20/linx_v1.20.jar
 
 OUTPUT_LINX=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/linx/${STAGE}
-FRAGILE_SITES=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/fragile_sites_hmf.hg38.csv
-LINE_ELEMENTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/line_elements.hg38.csv
-HELI_REP_ORIGIN=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/heli_rep_origins.bed
-VIRAL_HOST_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/viral_host_ref.csv
-###HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/known_fusion_data.csv  
 
 ## AmpliconArchitect:
 AI=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/amplified_intervals.py
