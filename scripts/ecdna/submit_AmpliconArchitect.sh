@@ -140,9 +140,11 @@ then
             --bam $ALIGNED_BAM_FILE_TUMOR \
             --gain 5 \
             --cnsize_min 100000
-else
-   echo "CNV segmentation file does not exist."
+    echo "#### AmplifiedIntervals.py completed for ${SAMPLE_ID} ####"
+    
 fi
+
+
 
 ## Run AA main script
 # if [ ! -d $AA_RESULTS_DIR/${PATIENT_ID}${TYPE} ]
