@@ -45,7 +45,7 @@ source $CONFIG
 ## Requires pysam, numpy, matplotlib, scipy 
 ## Preprocess cnv-kit generated bed files to filter out unplaced contigs, and to include
 ## only gain of 5 or more, and segment size 100000 or more
-## And will need an aligned bam file.
+## And will need an aligned tumour bam file.
 
 ## Update 01 Nov 2020 - now using PURPLE purity and ploidy adjusted CN calls (rather than CNV kit CN calls)
 
