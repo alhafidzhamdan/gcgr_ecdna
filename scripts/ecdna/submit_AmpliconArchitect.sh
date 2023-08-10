@@ -56,7 +56,7 @@ source $CONFIG
 #################################################################################################################
 
 ## Generate a prelim PURPLE CNV file for AA
-if [[ ! -f $AI_CNV && ! -f $PURPLE_TMP_CNV ]]
+if [ ! -f $AI_CNV ]
 then
 
     echo "#### CNV file from PURPLE for ${SAMPLE_ID} does not exist, running PURPLE... ####"
@@ -129,7 +129,7 @@ export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
 export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/data_repo
 
 ## Run AmplifiedIntervals.py to generate AA input bed file
-if [[ -f $AI_CNV && ! -f $AA_CNV ]]
+if [ -f $AI_CNV ]
 then
     echo "#### Preprocessing cnv bed files (gain = 5, minimum cn size = 100000) for ${SAMPLE_ID} ####"
     python $AI \
@@ -153,7 +153,7 @@ else
     
     echo "#### Creating new output directory for $SAMPLE_ID ####"
     mkdir -p $AA_RESULTS_DIR/${SAMPLE_ID}
-    
+
 fi
 
 if [[ -d $AA_RESULTS_DIR/${SAMPLE_ID} && -f $AA_CNV ]]
