@@ -54,7 +54,8 @@ source $CONFIG
 #################################################################################################################
 
 ## Generate a prelim PURPLE CNV file for AA:
-if [ ! -f $PURPLE_TMP_CNV ];then
+if [ ! -f $PURPLE_TMP_CNV ]
+then
 
     echo "CNV file from PURPLE for ${SAMPLE_ID} does not exist, running PURPLE... "
     echo "Running without SNV and SV inputs..."
@@ -108,6 +109,7 @@ if [ ! -f $PURPLE_TMP_CNV ];then
 
 else 
     echo "CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping PURPLE... "
+fi
 
 ## Convert PURPLE CNV file to AA input format:
 
