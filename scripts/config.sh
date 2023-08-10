@@ -86,7 +86,6 @@ PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.5/pur
 SAGE_SOMATIC_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
 SAGE_GERMLINE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.germline.vcf.gz
 
-
 OUTPUT_AMBER=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/amber/${STAGE}
 OUTPUT_COBALT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/cobalt/${STAGE}
 
@@ -146,6 +145,21 @@ LINE_ELEMENTS=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/
 HELI_REP_ORIGIN=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/heli_rep_origins.bed
 VIRAL_HOST_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/viral_host_ref.csv
 ###HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/known_fusion_data.csv  
+
+## AmpliconArchitect:
+PURPLE_TMP_DIR=$VARIANTS/ecdna/PURPLE_TMP/${SAMPLE_ID}
+PURPLE_TMP_CNV=$PURPLE_TMP_DIR/${SAMPLE_ID}.purple.cnv.somatic.tsv ## from PURPLE
+AA_PURPLE_CN_DIR=$VARIANTS/ecdna/AA_PURPLE_CN
+AI_CNV=$AA_PURPLE_CN_DIR/${SAMPLE_ID}.CN_AA.bed
+AA_CNV=$VARIANTS/ecdna/AA_PURPLE_BED/${SAMPLE_ID}.bed
+
+
+
+
+
+
+
+
 
 ## LILAC:
 REF_NO_ALT=$RESOURCES/refgenome38/hg38_no_alt/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna.gz
