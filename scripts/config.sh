@@ -146,7 +146,7 @@ HELI_REP_ORIGIN=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resource
 VIRAL_HOST_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/viral_host_ref.csv
 ###HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/known_fusion_data.csv  
 
-## AmpliconArchitect:
+## AmpliconArchitect:
 AI=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/amplified_intervals.py
 AA=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/AmpliconArchitect.py
 PURPLE_TMP_DIR=$VARIANTS/ecdna/PURPLE_TMP/${SAMPLE_ID}

@@ -125,7 +125,7 @@ else
     echo "CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping PURPLE... "
 fi
 
-export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
+source activate AA
 export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/data_repo
 
 ## Run AmplifiedIntervals.py to generate AA input bed file
