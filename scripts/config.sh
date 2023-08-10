@@ -75,14 +75,14 @@ ALIGNED_BAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.bam
 ALIGNED_CRAM_FILE_TUMOR=$TUMOR_DIR/${PATIENT_ID}${TYPE}-ready.cram 
 ALIGNED_CRAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.cram
 
-## HMF tools:
+## HMF JARs:
 SAGE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sage-v3.3/sage_v3.3.jar
 AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.9.1/amber-3.9.1.jar
 COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.15.2/cobalt_v1.15.2.jar
+PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/resources/hmftools-purple-v3.9/purple_v3.9.jar
 
-### PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purple-2.47.jar
-PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.5/purple_v3.5.jar
 
+## Files:
 SAGE_SOMATIC_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
 SAGE_GERMLINE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.germline.vcf.gz
 
