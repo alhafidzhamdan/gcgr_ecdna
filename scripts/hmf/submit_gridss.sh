@@ -28,8 +28,8 @@ source $CONFIG
 
 $GRIDSS \
     --reference $REFERENCE \
-    --output $GRIDSS_RAW \
-    --assembly $GRIDSS_OUTPUT \
+    --output $GRIDSS_RAW_VCF \
+    --assembly $GRIDSS_ASSEMBLY \
     --jvmheap 32g \
     --workingdir $GRIDSS_WORKING_DIR \
     --blacklist $ENCODE_BLACKLIST \
