@@ -7,7 +7,7 @@
 #$ -j y
 #$ -S /bin/bash
 #$ -cwd
-#$ -l h_vmem=16G
+#$ -l h_vmem=32G
 #$ -pe sharedmem 16
 #$ -l h_rt=250:00:00
 
