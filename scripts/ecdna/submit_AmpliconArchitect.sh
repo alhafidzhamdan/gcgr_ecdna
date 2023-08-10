@@ -131,7 +131,7 @@ export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
 export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/data_repo
 
 ## Run AmplifiedIntervals.py to generate AA input bed file
-if [ -f $AI_CNV ]
+if [ -f $AI_CNV && ! -f $AA_CNV ]
 then
     echo "#### Preprocessing cnv bed files (gain = 5, minimum cn size = 100000) for ${SAMPLE_ID} ####"
     python $AI \
@@ -153,7 +153,7 @@ else
     echo "#### Output directory for $SAMPLE_ID already created ####"
 fi
 
-if [ -d $AA_RESULTS_DIR/${SAMPLE_ID} ]
+if [ -d $AA_RESULTS_DIR/${SAMPLE_ID} && -f $AA_CNV ]
 then
     echo "#### Running AA for ${SAMPLE_ID} using $AA_CNV, only including segments with CN 5 or more, and with min CN size 100000 ####"
     cd $AA_RESULTS_DIR/${SAMPLE_ID}
@@ -165,5 +165,5 @@ then
     echo "#### AA run completed for ${SAMPLE_ID} ####"
 fi
     
-    
+if [ ]
 
