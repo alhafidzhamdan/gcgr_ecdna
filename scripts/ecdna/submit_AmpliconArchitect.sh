@@ -53,7 +53,7 @@ source $CONFIG
 ######################################### GENERATE AA CNV CALLS #################################################
 #################################################################################################################
 
-## Generate a prelim PURPLE CNV file for AA:
+## Generate a prelim PURPLE CNV file for AA
 if [ ! -f $PURPLE_TMP_CNV ]
 then
 
@@ -71,6 +71,8 @@ then
     case "$RUN_TYPE" in
         "paired")
 
+        echo "Running PURPLE in paired tumour-normal mode for ${SAMPLE_ID}..."
+
         java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
             -reference ${PATIENT_ID}N \
             -tumor ${PATIENT_ID}T \
@@ -84,8 +86,14 @@ then
             -ensembl_data_dir $HMF_ENSEMBLE_V533 \
             -no_charts
 
+        echo "Formatting for AmplifiedIntervals.py..."
+        
+        cut -f 1-4 $PURPLE_TMP_CNV > $AI_CNV
+
             ;;
         "unpaired")
+
+        echo "Running PURPLE in tumour-only mode for ${SAMPLE_ID}..."
 
         java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
             -tumor ${PATIENT_ID}T \
@@ -98,6 +106,10 @@ then
             -ref_genome_version 38 \
             -ensembl_data_dir $HMF_ENSEMBLE_V533 \
             -no_charts
+        
+        echo "Formatting for AmplifiedIntervals.py..."
+
+        cut -f 1-4 $PURPLE_TMP_CNV > $AI_CNV
 
     ;;
     *)
@@ -111,33 +123,24 @@ else
     echo "CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping PURPLE... "
 fi
 
-## Convert PURPLE CNV file to AA input format:
+export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
+export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/data_repo
 
-# export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
-# export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/data_repo
-# AA=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/AmpliconArchitect.py
-# AI=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/amplified_intervals.py
-# PURPLE_CNV_BED=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/PURPLE/${PATIENT_ID}${TYPE}.CN.bed
-# AA_BED_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_PURPLE_BED
-# AA_RESULTS_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_PURPLE_RESULTS
-# ALIGNED_BAM_FILE_TUMOR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/alignments/${SAMPLE_ID}/${SAMPLE_ID}/${SAMPLE_ID}-ready.bam
+## Run AmplifiedIntervals.py to generate AA input bed file
+if [ -f $AI_CNV ]
+then
+    echo "Preprocessing cnv bed files (gain = 5, minimum cn size = 100000) for ${SAMPLE_ID}"
+    python $AI \
+            --bed $AI_CNV \
+            --out $AA_PURPLE_BED_DIR/${SAMPLE_ID} \
+            --bam $ALIGNED_BAM_FILE_TUMOR \
+            --gain 5 \
+            --cnsize_min 100000
+else
+   echo "CNV segmentation file does not exist."
+fi
 
-
-# ## Main AA Script:
-# if [[ -f $CNV_BED && ! -f $AA_BED_DIR/${PATIENT_ID}${TYPE}.bed ]]
-# then
-# echo "Preprocessing cnv bed files (gain = 5, minimum cn size = 100000) for ${SAMPLE_ID}"
-#    python $AI \
-#         --bed $CNV_BED \
-#         --out $AA_BED_DIR/${PATIENT_ID}${TYPE}\
-#         --bam $ALIGNED_BAM_FILE_TUMOR \
-#         --gain 5 \
-#         --cnsize_min 100000
-# elif [ ! -f $CNV_BED ]
-# then
-#    echo "CNV segmentation file does not exist."
-# fi
-
+## Run AA main script
 # if [ ! -d $AA_RESULTS_DIR/${PATIENT_ID}${TYPE} ]
 # then
 #     echo "Creating output directory for $SAMPLE_ID"

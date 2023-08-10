@@ -147,11 +147,15 @@ VIRAL_HOST_REF=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources
 ###HMF_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/known_fusion_data.csv  
 
 ## AmpliconArchitect:
+AA=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/AmpliconArchitect.py
+AI=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/amplified_intervals.py
 PURPLE_TMP_DIR=$VARIANTS/ecdna/PURPLE_TMP/${SAMPLE_ID}
 PURPLE_TMP_CNV=$PURPLE_TMP_DIR/${SAMPLE_ID}.purple.cnv.somatic.tsv ## from PURPLE
 AA_PURPLE_CN_DIR=$VARIANTS/ecdna/AA_PURPLE_CN
 AI_CNV=$AA_PURPLE_CN_DIR/${SAMPLE_ID}.CN_AA.bed
-AA_CNV=$VARIANTS/ecdna/AA_PURPLE_BED/${SAMPLE_ID}.bed
+AA_PURPLE_BED_DIR=$VARIANTS/ecdna/AA_PURPLE_BED
+AA_CNV=$AA_PURPLE_BED_DIR/${SAMPLE_ID}.bed
+AA_RESULTS_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_PURPLE_RESULTS
 
 
 
