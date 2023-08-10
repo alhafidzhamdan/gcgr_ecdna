@@ -156,6 +156,8 @@ AI_CNV=$AA_PURPLE_CN_DIR/${SAMPLE_ID}.CN_AA.bed
 AA_PURPLE_BED_DIR=$VARIANTS/ecdna/AA_PURPLE_BED
 AA_CNV=$AA_PURPLE_BED_DIR/${SAMPLE_ID}.bed
 AA_RESULTS_DIR=$VARIANTS/ecdna/AA_PURPLE_RESULTS
+AC=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconClassifier/amplicon_classifier.py
+AA_CLASSIFIER_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_classifier/AC_v0.4.10/${STAGE}
 
 
 ## LILAC:
