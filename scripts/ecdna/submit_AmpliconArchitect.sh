@@ -16,8 +16,9 @@ unset MODULEPATH
 
 CONFIG=$1
 IDS=$2
-TYPE=$3
-RUN_TYPE=$4
+STAGE=$3
+TYPE=$4
+RUN_TYPE=$5
 
 # Check if the RUN_TYPE variable is set
 if [ -z "$RUN_TYPE" ]; then
