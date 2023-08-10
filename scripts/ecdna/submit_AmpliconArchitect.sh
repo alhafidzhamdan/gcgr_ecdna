@@ -56,7 +56,7 @@ source $CONFIG
 #################################################################################################################
 
 ## Generate a prelim PURPLE CNV file for AA
-if [ ! -f $AI_CNV ]
+if [[ ! -f $AI_CNV && ! -f $PURPLE_TMP_CNV ]]
 then
 
     echo "#### CNV file from PURPLE for ${SAMPLE_ID} does not exist, running PURPLE... ####"
@@ -148,7 +148,12 @@ then
     echo "#### Creating output directory for $SAMPLE_ID ####"
     mkdir -p $AA_RESULTS_DIR/${SAMPLE_ID}
 else
-    echo "#### Output directory for $SAMPLE_ID already created ####"
+    echo "#### Removing previous directory for $SAMPLE_ID that was already created ####"
+    rm -rf $AA_RESULTS_DIR/${SAMPLE_ID}
+    
+    echo "#### Creating new output directory for $SAMPLE_ID ####"
+    mkdir -p $AA_RESULTS_DIR/${SAMPLE_ID}
+    
 fi
 
 if [[ -d $AA_RESULTS_DIR/${SAMPLE_ID} && -f $AA_CNV ]]
