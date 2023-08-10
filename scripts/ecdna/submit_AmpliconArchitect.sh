@@ -57,21 +57,21 @@ source $CONFIG
 if [ ! -f $PURPLE_TMP_CNV ]
 then
 
-    echo "CNV file from PURPLE for ${SAMPLE_ID} does not exist, running PURPLE... "
-    echo "Running without SNV and SV inputs..."
+    echo "#### CNV file from PURPLE for ${SAMPLE_ID} does not exist, running PURPLE... ####"
+    echo "#### Running without SNV and SV inputs... ####"
 
     if [ ! -d $PURPLE_TMP_DIR ]
     then
-        echo "Creating TMP output directory for $SAMPLE_ID"
+        echo "#### Creating TMP output directory for $SAMPLE_ID ####"
         mkdir -p $PURPLE_TMP_DIR
     else
-        echo "TMP Output directory for $SAMPLE_ID already created"
+        echo "#### TMP Output directory for $SAMPLE_ID already created ####"
     fi
     
     case "$RUN_TYPE" in
         "paired")
 
-        echo "Running PURPLE in paired tumour-normal mode for ${SAMPLE_ID}..."
+        echo "#### Running PURPLE in paired tumour-normal mode for ${SAMPLE_ID}... ####"
 
         java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
             -reference ${PATIENT_ID}N \
@@ -86,7 +86,7 @@ then
             -ensembl_data_dir $HMF_ENSEMBLE_V533 \
             -no_charts
 
-        echo "Formatting for AmplifiedIntervals.py..."
+        echo "#### Formatting for AmplifiedIntervals.py... ####"
         
         cut -f 1-4 $PURPLE_TMP_CNV > $AI_CNV
         rm -rf $PURPLE_TMP_DIR
@@ -94,7 +94,7 @@ then
             ;;
         "unpaired")
 
-        echo "Running PURPLE in tumour-only mode for ${SAMPLE_ID}..."
+        echo "#### Running PURPLE in tumour-only mode for ${SAMPLE_ID}... ####"
 
         java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
             -tumor ${PATIENT_ID}T \
@@ -108,7 +108,7 @@ then
             -ensembl_data_dir $HMF_ENSEMBLE_V533 \
             -no_charts
         
-        echo "Formatting for AmplifiedIntervals.py..."
+        echo "#### Formatting for AmplifiedIntervals.py... ####"
 
         cut -f 1-4 $PURPLE_TMP_CNV > $AI_CNV
         rm -rf $PURPLE_TMP_DIR
@@ -131,7 +131,7 @@ export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchite
 ## Run AmplifiedIntervals.py to generate AA input bed file
 if [ -f $AI_CNV ]
 then
-    echo "Preprocessing cnv bed files (gain = 5, minimum cn size = 100000) for ${SAMPLE_ID}"
+    echo "#### Preprocessing cnv bed files (gain = 5, minimum cn size = 100000) for ${SAMPLE_ID} ####"
     python $AI \
             --bed $AI_CNV \
             --out $AA_PURPLE_BED_DIR/${SAMPLE_ID} \
