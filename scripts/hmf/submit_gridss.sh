@@ -26,6 +26,8 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
 
+GRIDSS_ASSEMBLY=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/results/${PATIENT_ID}{$TYPE}.assembly.bam
+
 $GRIDSS \
     --reference $REFERENCE \
     --output $GRIDSS_RAW \
