@@ -89,7 +89,7 @@ then
 
         echo "#### Formatting for AmplifiedIntervals.py... ####"
         
-        cut -f 1-4 $PURPLE_TMP_CNV > $AI_CNV
+        cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' > $AI_CNV
         rm -rf $PURPLE_TMP_DIR
 
             ;;
@@ -111,19 +111,19 @@ then
         
         echo "#### Formatting for AmplifiedIntervals.py... ####"
 
-        cut -f 1-4 $PURPLE_TMP_CNV > $AI_CNV
+        cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' > $AI_CNV
         rm -rf $PURPLE_TMP_DIR
 
     ;;
     *)
-        echo "Error: Invalid value for RUN_TYPE variable."
+        echo "#### Error: Invalid value for RUN_TYPE variable. ####"
         exit 1
         ;;
 
     esac
 
 else 
-    echo "CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping PURPLE... "
+    echo "#### CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping PURPLE... ####"
 fi
 
 export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
