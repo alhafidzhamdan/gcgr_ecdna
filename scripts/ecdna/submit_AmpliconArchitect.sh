@@ -91,7 +91,6 @@ then
         echo "#### Formatting for AmplifiedIntervals.py... ####"
         
         cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t1&/' > $AI_CNV
-        rm -rf $PURPLE_TMP_DIR
 
             ;;
         "unpaired")
@@ -113,7 +112,6 @@ then
         echo "#### Formatting for AmplifiedIntervals.py... ####"
 
         cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t1&/' > $AI_CNV
-        rm -rf $PURPLE_TMP_DIR
 
     ;;
     *)
