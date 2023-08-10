@@ -54,7 +54,7 @@ source $CONFIG
 #################################################################################################################
 
 ## Generate a prelim PURPLE CNV file for AA
-if [ ! -f $PURPLE_TMP_CNV ]
+if [ ! -f $AI_CNV ]
 then
 
     echo "#### CNV file from PURPLE for ${SAMPLE_ID} does not exist, running PURPLE... ####"
