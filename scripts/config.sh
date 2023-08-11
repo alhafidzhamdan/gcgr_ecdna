@@ -124,6 +124,7 @@ GRIDSS_JAR=$SCRIPTS/gridss-2.10.0/gridss-2.10.0-gridss-jar-with-dependencies.jar
 GRIDSS_RM=$SCRIPTS/gridss-2.10.0/scripts/gridss_annotate_vcf_repeatmasker.sh
 GRIDSS_SOMATIC_FILTER=$SCRIPTS/gridss-2.10.0/scripts/gridss_somatic_filter.R
 GRIPSS_JAR=$SCRIPTS/hmftools-gripss-v1.7/gripss-1.7.jar
+REPEAT_MASKER_EXE=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin/RepeatMasker
 
 GRIDSS_DIR=${VARIANTS}/sv/gridss
 GRIDSS_OUTPUT=$GRIDSS_DIR/results/${STAGE}
@@ -179,7 +180,7 @@ GATK4=/exports/igmm/software/pkg/el7/apps/bcbio/1.1.5/share/anaconda/share/gatk4
 GATK4_BIN=$GATK4
 GATK4_JAR=/gpfs/igmmfs01/software/pkg/el7/apps/bcbio/1.1.5/share/anaconda/share/gatk4-4.1.4.1-1/gatk-package-4.1.4.1-local.jar
 PICARD_JAR=/exports/igmm/software/pkg/el7/apps/bcbio/1.2.0/anaconda/share/picard-2.23.8-0/picard.jar
-REPEAT_MASKER_EXE=/exports/igmm/eddie/Glioblastoma-WGS/resources/RepeatMasker/RepeatMasker
+####REPEAT_MASKER_EXE=/exports/igmm/eddie/Glioblastoma-WGS/resources/RepeatMasker/RepeatMasker
 ENCODE_BLACKLIST=$RESOURCES/encode4_GRCh38_blacklist.bed.gz
 REPEAT_MASKER=$RESOURCES/hg38.fa.out.bed
 BLACKLISTED_PEAKS=/exports/igmm/eddie/Glioblastoma-WGS/resources/hg38-blacklist.v2.bed
