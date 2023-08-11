@@ -27,7 +27,6 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 source $CONFIG
 
 ## Generate RM annotated high confidence SV call
-
 $GRIDSS_RM \
     $GRIDSS_FINAL_FILTERED \
     -o $GRIDSS_FINAL_FILTERED_RM \
@@ -36,7 +35,6 @@ $GRIDSS_RM \
     -t 16
 
 ## Generate RM annotated low confidence SV call
-
 $GRIDSS_RM \
     $GRIDSS_PON_FILTERED \
     -o $GRIDSS_PON_FILTERED_RM \
