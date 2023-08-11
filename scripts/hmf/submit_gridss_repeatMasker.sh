@@ -15,6 +15,7 @@
 ### Install latest releases from here https://github.com/PapenfussLab/GRIDSS/releases
 ### This release is 2.10
 ### Need to tweak original script (gridss_annotate_vcf_repeatmasker.sh) to increase java heap requirement for RepeatMasker from 64Mb to >2g
+### Update 11/8/23: Installation of repeatmasker done via separate conda env and installed with conda
 
 CONFIG=$1
 IDS=$2
@@ -26,9 +27,7 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
 
-## Paths needed to install RepeatMasker
-## /exports/igmm/eddie/Glioblastoma-WGS/scripts/TRF-4.09.1/build/src/trf
-## /exports/igmm/eddie/Glioblastoma-WGS/scripts/rmblast-2.14.0/bin/rmblastn
+export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/repeatmasker/bin:$PATH
 
 ## Generate RM annotated high confidence SV call
 $GRIDSS_RM \
