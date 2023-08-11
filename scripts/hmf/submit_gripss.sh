@@ -36,7 +36,6 @@ java $JVM_OPTS $JVM_TMP_DIR -cp $GRIPSS_JAR com.hartwig.hmftools.gripss.GripssAp
    -output_vcf $GRIDSS_PON_FILTERED
    
 ### Then use hard filter to produce a final filtered VCF to be used, both, with PURPLE.
-
 echo "Performing hard filter for PON-filtered VCF for ${PATIENT_ID}${TYPE}"
 java $JVM_OPTS $JVM_TMP_DIR -cp $GRIPSS_JAR com.hartwig.hmftools.gripss.GripssHardFilterApplicationKt \
    -input_vcf $GRIDSS_PON_FILTERED \

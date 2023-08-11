@@ -109,7 +109,7 @@ GERMLINE_BLACKLIST_BED=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.b
 TUMOR_ONLY_DIPLOID_BED=$HMF_RESOURCES_V533/copy_number/DiploidRegions.38.bed.gz
 GERMLINE_HET_PON=$HMF_RESOURCES_V533/copy_number/GermlineHetPon.38.vcf.gz
 GC_PROFILE=$HMF_RESOURCES_V533/copy_number/GC_profile.1000bp.38.cnp
-GRIPSS_FUSION=$HMF_RESOURCES_V533/known_fusions.38.bedpe
+GRIPSS_FUSION=$HMF_RESOURCES_V533/sv/known_fusions.38.bedpe
 
 ## Other resources:
 FRAGILE_SITES=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/fragile_sites_hmf.hg38.csv
