@@ -153,7 +153,7 @@ then
     mkdir -p $AA_RESULTS_DIR/${SAMPLE_ID}
 fi
 
-if [[ -f $AA_RESULTS_DIR/${SAMPLE_ID}/${SAMPLE_ID}_amplicon1_cycles.txt && -f $AA_CNV ]]
+if [[ ! -f $AA_RESULTS_DIR/${SAMPLE_ID}/${SAMPLE_ID}_amplicon1_cycles.txt && -f $AA_CNV ]]
 then
     echo "#### Running AA for ${SAMPLE_ID} using $AA_CNV, only including segments with CN 5 or more, and with min CN size 100000 ####"
     cd $AA_RESULTS_DIR/${SAMPLE_ID}
