@@ -151,13 +151,6 @@ if [ ! -d $AA_RESULTS_DIR/${SAMPLE_ID} ]
 then
     echo "#### Creating output directory for $SAMPLE_ID ####"
     mkdir -p $AA_RESULTS_DIR/${SAMPLE_ID}
-else
-    echo "#### Removing previous directory for $SAMPLE_ID that was already created ####"
-    rm -rf $AA_RESULTS_DIR/${SAMPLE_ID}
-    
-    echo "#### Creating new output directory for $SAMPLE_ID ####"
-    mkdir -p $AA_RESULTS_DIR/${SAMPLE_ID}
-
 fi
 
 if [[ -f $AA_RESULTS_DIR/${SAMPLE_ID}/${SAMPLE_ID}_amplicon1_cycles.txt && -f $AA_CNV ]]
