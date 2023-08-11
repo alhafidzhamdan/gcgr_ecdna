@@ -145,8 +145,8 @@ LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-linx-v1.20/linx_v
 OUTPUT_LINX=${VARIANTS}/sv/linx/${STAGE}
 
 ## AmpliconArchitect:
-AI=${VARIANTS}/AmpliconArchitect/src/amplified_intervals.py
-AA=${VARIANTS}/AmpliconArchitect/src/AmpliconArchitect.py
+AI=${SCRIPTS}/AmpliconArchitect/src/amplified_intervals.py
+AA=${SCRIPTS}/AmpliconArchitect/src/AmpliconArchitect.py
 PURPLE_TMP_DIR=$VARIANTS/ecdna/PURPLE_TMP/${SAMPLE_ID}
 PURPLE_TMP_CNV=$PURPLE_TMP_DIR/${SAMPLE_ID}.purple.cnv.somatic.tsv ## from PURPLE
 AA_PURPLE_CN_DIR=$VARIANTS/ecdna/AA_PURPLE_CN
@@ -154,7 +154,7 @@ AI_CNV=$AA_PURPLE_CN_DIR/${SAMPLE_ID}.CN_AA.bed
 AA_PURPLE_BED_DIR=$VARIANTS/ecdna/AA_PURPLE_BED
 AA_CNV=$AA_PURPLE_BED_DIR/${SAMPLE_ID}.bed
 AA_RESULTS_DIR=$VARIANTS/ecdna/AA_PURPLE_RESULTS
-AC=${VARIANTS}/AmpliconClassifier/amplicon_classifier.py
+AC=${SCRIPTS}/AmpliconClassifier/amplicon_classifier.py
 AA_CLASSIFIER_DIR=${VARIANTS}/ecdna/AA_classifier/AC_v0.4.10/${STAGE}
 
 ## LILAC:
