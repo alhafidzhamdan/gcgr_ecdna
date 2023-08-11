@@ -75,23 +75,49 @@ then
 
         echo "#### Running PURPLE in paired tumour-normal mode for ${SAMPLE_ID}... ####"
 
-        java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
-            -reference ${PATIENT_ID}N \
-            -tumor ${PATIENT_ID}T \
-            -output_dir $PURPLE_TMP_DIR \
-            -threads 16 \
-            -amber $OUTPUT_AMBER/${PATIENT_ID} \
-            -cobalt $OUTPUT_COBALT/${PATIENT_ID} \
-            -gc_profile $GC_PROFILE \
-            -ref_genome $REFERENCE \
-            -ref_genome_version 38 \
-            -ensembl_data_dir $HMF_ENSEMBLE_V533 \
-            -no_charts
+        if [ ! -f $GRIDSS_FINAL_FILTERED_RM ]
+        then 
+            echo "#### Running PURPLE without SV file..."
 
-        echo "#### Formatting for AmplifiedIntervals.py... ####"
+            java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
+                -reference ${PATIENT_ID}N \
+                -tumor ${PATIENT_ID}T \
+                -output_dir $PURPLE_TMP_DIR \
+                -threads 16 \
+                -amber $OUTPUT_AMBER/${PATIENT_ID} \
+                -cobalt $OUTPUT_COBALT/${PATIENT_ID} \
+                -gc_profile $GC_PROFILE \
+                -ref_genome $REFERENCE \
+                -ref_genome_version 38 \
+                -ensembl_data_dir $HMF_ENSEMBLE_V533 \
+                -no_charts
+
+            echo "#### Formatting for AmplifiedIntervals.py... ####"
+            
+            cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t1&/' > $AI_CNV
+        else
+            echo "#### Running PURPLE with SV file..."
+
+            java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
+                -reference ${PATIENT_ID}N \
+                -tumor ${PATIENT_ID}T \
+                -output_dir $PURPLE_TMP_DIR \
+                -threads 16 \
+                -amber $OUTPUT_AMBER/${PATIENT_ID} \
+                -cobalt $OUTPUT_COBALT/${PATIENT_ID} \
+                -structural_vcf $GRIDSS_FINAL_FILTERED_RM \
+                -gc_profile $GC_PROFILE \
+                -ref_genome $REFERENCE \
+                -ref_genome_version 38 \
+                -ensembl_data_dir $HMF_ENSEMBLE_V533 \
+                -no_charts
+
+            echo "#### Formatting for AmplifiedIntervals.py... ####"
+            
+            cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t1&/' > $AI_CNV
+
+        fi
         
-        cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t1&/' > $AI_CNV
-
             ;;
         "unpaired")
 

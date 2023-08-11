@@ -27,10 +27,8 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
 
-export PATH=/exports/igmm/eddie/Glioblastoma-WGS/scripts/RepeatMasker/Libraries:$PATH
-
 # /exports/igmm/eddie/Glioblastoma-WGS/scripts/TRF-4.09.1/build/src/trf
-
+# /exports/igmm/eddie/Glioblastoma-WGS/scripts/rmblast-2.14.0/bin
 
 ## Generate RM annotated high confidence SV call
 $GRIDSS_RM \
