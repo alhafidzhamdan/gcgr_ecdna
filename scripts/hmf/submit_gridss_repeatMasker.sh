@@ -26,13 +26,17 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
 
+## Paths needed to install RepeatMasker
+## /exports/igmm/eddie/Glioblastoma-WGS/scripts/TRF-4.09.1/build/src/trf
+## /exports/igmm/eddie/Glioblastoma-WGS/scripts/rmblast-2.14.0/bin/rmblastn
+
 ## Generate RM annotated high confidence SV call
 $GRIDSS_RM \
     $GRIDSS_FINAL_FILTERED \
     -o $GRIDSS_FINAL_FILTERED_RM \
     -j $GRIDSS_JAR \
     -w $GRIDSS_WORKING_DIR \
-    --rm /exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin/RepeatMasker \
+    --rm $REPEAT_MASKER_EXE \
     -t 16
 
 ## Generate RM annotated low confidence SV call
@@ -41,7 +45,7 @@ $GRIDSS_RM \
     -o $GRIDSS_PON_FILTERED_RM \
     -j $GRIDSS_JAR \
     -w $GRIDSS_WORKING_DIR \
-    --rm /exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin/RepeatMasker \
+    --rm $REPEAT_MASKER_EXE \
     -t 16
      
 
