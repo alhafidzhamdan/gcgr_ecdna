@@ -32,7 +32,7 @@ $GRIDSS_RM \
     -o $GRIDSS_FINAL_FILTERED_RM \
     -j $GRIDSS_JAR \
     -w $GRIDSS_WORKING_DIR \
-    --rm $REPEAT_MASKER_EXE \
+    --rm /exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin/RepeatMasker \
     -t 16
 
 ## Generate RM annotated low confidence SV call
@@ -41,7 +41,7 @@ $GRIDSS_RM \
     -o $GRIDSS_PON_FILTERED_RM \
     -j $GRIDSS_JAR \
     -w $GRIDSS_WORKING_DIR \
-    --rm $REPEAT_MASKER_EXE \
+    --rm /exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin/RepeatMasker \
     -t 16
      
 
