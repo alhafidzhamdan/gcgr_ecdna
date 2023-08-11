@@ -12,8 +12,9 @@
 
 CONFIG=$1
 IDS=$2
-BATCH=$3
-TYPE=$4
+STAGE=$3
+BATCH=$4
+TYPE=$5
 
 PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 

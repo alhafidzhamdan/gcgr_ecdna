@@ -109,6 +109,7 @@ GERMLINE_BLACKLIST_BED=$HMF_RESOURCES_V533/variants/KnownBlacklist.germline.38.b
 TUMOR_ONLY_DIPLOID_BED=$HMF_RESOURCES_V533/copy_number/DiploidRegions.38.bed.gz
 GERMLINE_HET_PON=$HMF_RESOURCES_V533/copy_number/GermlineHetPon.38.vcf.gz
 GC_PROFILE=$HMF_RESOURCES_V533/copy_number/GC_profile.1000bp.38.cnp
+GRIPSS_FUSION=$HMF_RESOURCES_V533/known_fusions.38.bedpe
 
 ## Other resources:
 FRAGILE_SITES=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/Linx/fragile_sites_hmf.hg38.csv
@@ -124,7 +125,7 @@ GRIDSS_RM=$SCRIPTS/gridss-2.10.0/scripts/gridss_annotate_vcf_repeatmasker.sh
 GRIDSS_SOMATIC_FILTER=$SCRIPTS/gridss-2.10.0/scripts/gridss_somatic_filter.R
 GRIPSS_JAR=$SCRIPTS/hmftools-gripss-v1.7/gripss-1.7.jar
 
-GRIDSS_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss
+GRIDSS_DIR=${WGS}/variants/sv/gridss
 GRIDSS_OUTPUT=$GRIDSS_DIR/results/${STAGE}
 GRIDSS_WORKING_DIR=$GRIDSS_DIR/working_dir/${PATIENT_ID}${TYPE}
 GRIDSS_RAW_VCF=$GRIDSS_OUTPUT/${PATIENT_ID}${TYPE}.gridss.raw.vcf
@@ -136,7 +137,6 @@ GRIDSS_PON_FILTERED_RM=$GRIDSS_OUTPUT/${PATIENT_ID}${TYPE}.gridss.pon.filtered.r
 GRIDSS_PON=$GRIDSS_DIR/pondir/${BATCH}
 LIBGRIDSS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss
 GRIDSS_PLOT_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/plotdir
-GRIPSS_FUSION=/exports/igmm/eddie/Glioblastoma-WGS/resources/HMFTools-Resources/GRIPSS/KnownFusionPairs.hg38.bedpe
 
 ### LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sv-linx-v1.11/sv-linx_v1.11.jar
 LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-linx-v1.20/linx_v1.20.jar
