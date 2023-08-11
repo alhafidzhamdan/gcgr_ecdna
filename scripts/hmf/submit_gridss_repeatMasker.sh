@@ -27,7 +27,10 @@ PATIENT_ID=`head -n $SGE_TASK_ID $IDS | tail -n 1`
 
 source $CONFIG
 
-export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/repeatmasker/bin:$PATH
+export PATH=/exports/igmm/eddie/Glioblastoma-WGS/scripts/RepeatMasker/Libraries:$PATH
+
+# /exports/igmm/eddie/Glioblastoma-WGS/scripts/TRF-4.09.1/build/src/trf
+
 
 ## Generate RM annotated high confidence SV call
 $GRIDSS_RM \

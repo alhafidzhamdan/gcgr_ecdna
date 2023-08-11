@@ -124,7 +124,7 @@ GRIDSS_JAR=$SCRIPTS/gridss-2.10.0/gridss-2.10.0-gridss-jar-with-dependencies.jar
 GRIDSS_RM=$SCRIPTS/gridss-2.10.0/scripts/gridss_annotate_vcf_repeatmasker.sh
 GRIDSS_SOMATIC_FILTER=$SCRIPTS/gridss-2.10.0/scripts/gridss_somatic_filter.R
 GRIPSS_JAR=$SCRIPTS/hmftools-gripss-v1.7/gripss-1.7.jar
-REPEAT_MASKER_EXE=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/repeatmasker/bin/RepeatMasker
+REPEAT_MASKER_EXE=/exports/igmm/eddie/Glioblastoma-WGS/scripts/RepeatMasker/RepeatMasker
 
 GRIDSS_DIR=${VARIANTS}/sv/gridss
 GRIDSS_OUTPUT=$GRIDSS_DIR/results/${STAGE}
