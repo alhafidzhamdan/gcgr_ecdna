@@ -160,7 +160,7 @@ else
 
 fi
 
-if [[ -d $AA_RESULTS_DIR/${SAMPLE_ID} && -f $AA_CNV ]]
+if [[ -f $AA_RESULTS_DIR/${SAMPLE_ID}/${SAMPLE_ID}_amplicon1_cycles.txt && -f $AA_CNV ]]
 then
     echo "#### Running AA for ${SAMPLE_ID} using $AA_CNV, only including segments with CN 5 or more, and with min CN size 100000 ####"
     cd $AA_RESULTS_DIR/${SAMPLE_ID}
@@ -170,7 +170,10 @@ then
         --out ${SAMPLE_ID} \
         --ref GRCh38
     echo "#### AA run completed for ${SAMPLE_ID} ####"
+else
+    echo "#### AA run for ${SAMPLE_ID} already completed, skipping... ####"
 fi
+
 
 #################################################################################################################
 ######################################### RUN AMPLICON CLASSIFIER ###############################################
