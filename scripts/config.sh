@@ -27,13 +27,14 @@ QC=$WGS/qc
 READ_BIAS=$QC/read_orientation_bias
 CONT_DIR=$QC/calculate_contamination
 VERIFYBAMID_DIR=$QC/verifybamid2
-GERMLINE_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/germline
 GDB_DIR=$GERMLINE_DIR/gdb
 
 ## Variants:
 BCBIO_VARIANTS=$WGS/variants/bcbio
-SSV=$WGS/variants/ssv
 VARIANTS=$WGS/variants
+SSV=$WGS/variants/ssv
+SV=$WGS/variants/sv
+
 M2_VARIANTS_UNFILTERED=$SSV/samples/Mutect2/unfiltered
 M2_VARIANTS_FILTERED=$SSV/samples/Mutect2/filtered
 M2_VARIANTS_PASSED=$SSV/samples/Mutect2/passed
@@ -53,13 +54,12 @@ S2_Var=$INTERSECT_DIR/S2_Var
 CONSENSUS_DIR=$SSV/consensus
 ENSEMBLE_DIR=$SSV/ensemble
 ENSEMBLE_VCF=$ENSEMBLE_DIR/${STAGE}/${PATIENT_ID}${TYPE}.ssv.vcf.gz
+GERMLINE_DIR=${VARIANTS}/germline
 
 WORK_DIR=$BCBIO_WORK/$PATIENT_ID
 JVM_OPTS="-Dsamjdk.use_async_io_read_samtools=false -Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=false -Dsamjdk.compression_level=1 -Xms12g -Xmx12g"
 JVM_TMP_DIR="-Djava.io.tmpdir=$WORK_DIR"
 JAVA=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/snakemake/bin/java
-
-GERMLINE_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/germline/
  
 ## Files:
 BCBIO_ALIGNMENT_TEMPLATE=$BCBIO_CONFIG/templates/align.yaml
@@ -76,25 +76,25 @@ ALIGNED_CRAM_FILE_TUMOR=$TUMOR_DIR/${PATIENT_ID}${TYPE}-ready.cram
 ALIGNED_CRAM_FILE_NORMAL=$NORMAL_DIR/${PATIENT_ID}N-ready.cram
 
 ## HMF JARs:
-SAGE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sage-v3.3/sage_v3.3.jar
-AMBER_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-amber-v3.9.1/amber-3.9.1.jar
-COBALT_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-cobalt-v1.15.2/cobalt_v1.15.2.jar
-PURPLE_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v3.9/purple_v3.9.jar
+SAGE_JAR=${SCRIPTS}/hmftools-sage-v3.3/sage_v3.3.jar
+AMBER_JAR=${SCRIPTS}/hmftools-amber-v3.9.1/amber-3.9.1.jar
+COBALT_JAR=${SCRIPTS}/hmftools-cobalt-v1.15.2/cobalt_v1.15.2.jar
+PURPLE_JAR=${SCRIPTS}/hmftools-purple-v3.9/purple_v3.9.jar
 
 ## Files:
-SAGE_SOMATIC_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
-SAGE_GERMLINE_VCF=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.germline.vcf.gz
-OUTPUT_AMBER=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/amber/${STAGE}
-OUTPUT_COBALT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/cobalt/${STAGE}
+SAGE_SOMATIC_VCF=${SSV}/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.somatic.vcf.gz
+SAGE_GERMLINE_VCF=${SSV}/sage/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.sage.germline.vcf.gz
+OUTPUT_AMBER=${VARIANTS}/amber/${STAGE}
+OUTPUT_COBALT=${VARIANTS}/cobalt/${STAGE}
 PURPLE_ANNOTATE_STRELKA_AD=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-purple-v2.47/purity-ploidy-estimator/src/main/java/com/hartwig/hmftools/purple/tools/AnnotateStrelkaWithAllelicDepth.java
-PURPLE_SNV_INPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ssv/ensemble/${PATIENT_ID}${TYPE}.ssv.snpeff.vcf.gz
+PURPLE_SNV_INPUT=${SSV}/ensemble/${PATIENT_ID}${TYPE}.ssv.snpeff.vcf.gz
 ##PURPLE_SNV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
-PURPLE_SNV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
-PURPLE_SV_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.sv.vcf.gz
+PURPLE_SNV_OUTPUT=${VARIANTS}/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.somatic.vcf.gz
+PURPLE_SV_OUTPUT=${VARIANTS}/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.sv.vcf.gz
 ##PURPLE_CNV_GENE_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}/${PATIENT_ID}${TYPE}/${PATIENT_ID}${TYPE}.purple.cnv.gene.tsv
-PURPLE_CNV_GENE_OUTPUT=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.cnv.gene.tsv
-OUTPUT_PURPLE=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/purple/${STAGE}
-CIRCOS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/circos-0.69-9/bin/circos
+PURPLE_CNV_GENE_OUTPUT=${VARIANTS}/purple/v2/${STAGE}/${PATIENT_ID}${NEW_TYPE}/${PATIENT_ID}${TYPE}.purple.cnv.gene.tsv
+OUTPUT_PURPLE=${VARIANTS}/purple/${STAGE}
+CIRCOS=${SCRIPTS}/circos-0.69-9/bin/circos
 
 ## Version 5.33:
 HMF_RESOURCES_V533=$RESOURCES/hmf_dna_pipeline_resources.38_v5.33
@@ -125,7 +125,7 @@ GRIDSS_RM=$SCRIPTS/gridss-2.10.0/scripts/gridss_annotate_vcf_repeatmasker.sh
 GRIDSS_SOMATIC_FILTER=$SCRIPTS/gridss-2.10.0/scripts/gridss_somatic_filter.R
 GRIPSS_JAR=$SCRIPTS/hmftools-gripss-v1.7/gripss-1.7.jar
 
-GRIDSS_DIR=${WGS}/variants/sv/gridss
+GRIDSS_DIR=${VARIANTS}/sv/gridss
 GRIDSS_OUTPUT=$GRIDSS_DIR/results/${STAGE}
 GRIDSS_WORKING_DIR=$GRIDSS_DIR/working_dir/${PATIENT_ID}${TYPE}
 GRIDSS_RAW_VCF=$GRIDSS_OUTPUT/${PATIENT_ID}${TYPE}.gridss.raw.vcf
@@ -135,17 +135,17 @@ GRIDSS_FINAL_FILTERED_RM=$GRIDSS_OUTPUT/${PATIENT_ID}${TYPE}.gridss.final.filter
 GRIDSS_PON_FILTERED=$GRIDSS_OUTPUT/${PATIENT_ID}${TYPE}.gridss.pon.filtered.vcf
 GRIDSS_PON_FILTERED_RM=$GRIDSS_OUTPUT/${PATIENT_ID}${TYPE}.gridss.pon.filtered.rm.vcf
 GRIDSS_PON=$GRIDSS_DIR/pondir/${BATCH}
-LIBGRIDSS=/exports/igmm/eddie/Glioblastoma-WGS/scripts/gridss
-GRIDSS_PLOT_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/gridss/plotdir
+LIBGRIDSS=${VARIANTS}/gridss
+GRIDSS_PLOT_DIR=${VARIANTS}/sv/gridss/plotdir
 
 ### LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-sv-linx-v1.11/sv-linx_v1.11.jar
 LINX_JAR=/exports/igmm/eddie/Glioblastoma-WGS/scripts/hmftools-linx-v1.20/linx_v1.20.jar
 
-OUTPUT_LINX=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/sv/linx/${STAGE}
+OUTPUT_LINX=${VARIANTS}/sv/linx/${STAGE}
 
 ## AmpliconArchitect:
-AI=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/amplified_intervals.py
-AA=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/src/AmpliconArchitect.py
+AI=${VARIANTS}/AmpliconArchitect/src/amplified_intervals.py
+AA=${VARIANTS}/AmpliconArchitect/src/AmpliconArchitect.py
 PURPLE_TMP_DIR=$VARIANTS/ecdna/PURPLE_TMP/${SAMPLE_ID}
 PURPLE_TMP_CNV=$PURPLE_TMP_DIR/${SAMPLE_ID}.purple.cnv.somatic.tsv ## from PURPLE
 AA_PURPLE_CN_DIR=$VARIANTS/ecdna/AA_PURPLE_CN
@@ -153,13 +153,13 @@ AI_CNV=$AA_PURPLE_CN_DIR/${SAMPLE_ID}.CN_AA.bed
 AA_PURPLE_BED_DIR=$VARIANTS/ecdna/AA_PURPLE_BED
 AA_CNV=$AA_PURPLE_BED_DIR/${SAMPLE_ID}.bed
 AA_RESULTS_DIR=$VARIANTS/ecdna/AA_PURPLE_RESULTS
-AC=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconClassifier/amplicon_classifier.py
-AA_CLASSIFIER_DIR=/exports/igmm/eddie/Glioblastoma-WGS/WGS/variants/ecdna/AA_classifier/AC_v0.4.10/${STAGE}
+AC=${VARIANTS}/AmpliconClassifier/amplicon_classifier.py
+AA_CLASSIFIER_DIR=${VARIANTS}/ecdna/AA_classifier/AC_v0.4.10/${STAGE}
 
 ## LILAC:
 REF_NO_ALT=$RESOURCES/refgenome38/hg38_no_alt/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna.gz
 ####LILAC_JAR=$BASE/scripts/hmftools-lilac-v1.2/lilac_v1.2.jar
-LILAC_JAR=$BASE/scripts/hmftools-lilac-v1.3_rc1/lilac_v1.3_rc1.jar
+LILAC_JAR=${SCRIPTS}/hmftools-lilac-v1.3_rc1/lilac_v1.3_rc1.jar
 LILAC_RESOURCES=$RESOURCES/lilac
 LILAC_OUTPUT=$VARIANTS/lilac/output
 LILAC_INPUT=$VARIANTS/lilac/input
