@@ -225,7 +225,7 @@ then
                     --cycles $cycle \
                     --graph $graph \
                     --report_complexity --annotate_cycles_file \
-                    > classifier_stdout.log
+                    > ${SAMPLE_ID}_classifier_stdout.log
             done < ${SAMPLE_ID}_graph_list.txt
         done < ${SAMPLE_ID}_cycles_list.txt
 
