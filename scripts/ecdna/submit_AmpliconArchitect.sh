@@ -234,6 +234,8 @@ then
     else
         echo "#### No cycle graph files found for ${SAMPLE_ID}, skipping AmpliconClassifier.py... ####"
     fi
+else
+    echo "#### AmpliconClassifier.py run for ${SAMPLE_ID} already completed, skipping... ####"
 fi
 
 
