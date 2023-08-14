@@ -203,39 +203,33 @@ then
     mkdir -p $AA_CLASSIFIER_DIR
 fi
 
-## Check if any AmpliconClassifier.py output files exist
-if [ ! -f $AA_CLASSIFIER_DIR/${SAMPLE_ID}_amplicon1_amplicon_classification_profiles.tsv ]
+## Check if at least one cycle graph exists
+if [ -f $AA_RESULTS_DIR/${SAMPLE_ID}/${SAMPLE_ID}_amplicon1_cycles.txt ]
 then
-    ## Check if at least one cycle graph exists
-    if [ -f $AA_RESULTS_DIR/${SAMPLE_ID}/${SAMPLE_ID}_amplicon1_cycles.txt ]
-    then
-        echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID}... ####"
+    echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID}... ####"
 
-        cd ${AA_RESULTS_DIR}/${SAMPLE_ID}
-        ls -1 $PWD/*cycles.txt > ${SAMPLE_ID}_cycles_list.txt
-        ls -1 $PWD/*graph.txt > ${SAMPLE_ID}_graph_list.txt
+    cd ${AA_RESULTS_DIR}/${SAMPLE_ID}
+    ls -1 $PWD/*cycles.txt > ${SAMPLE_ID}_cycles_list.txt
+    ls -1 $PWD/*graph.txt > ${SAMPLE_ID}_graph_list.txt
 
-        ## Loop through each cycle and graph file
-        while read -r cycle; do
-            while read -r graph; do
-                echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID} using $cycle and $graph... ####"
-                cd $AA_CLASSIFIER_DIR
-                python $AC \
-                    --ref GRCh38 \
-                    --cycles $cycle \
-                    --graph $graph \
-                    --report_complexity --annotate_cycles_file \
-                    > ${SAMPLE_ID}_classifier_stdout.log
-            done < ${SAMPLE_ID}_graph_list.txt
-        done < ${SAMPLE_ID}_cycles_list.txt
+    ## Loop through each cycle and graph file
+    while read -r cycle; do
+        while read -r graph; do
+            echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID} using $cycle and $graph... ####"
+            cd $AA_CLASSIFIER_DIR
+            python $AC \
+                --ref GRCh38 \
+                --cycles $cycle \
+                --graph $graph \
+                --report_complexity --annotate_cycles_file \
+                > ${SAMPLE_ID}_classifier_stdout.log
+        done < ${SAMPLE_ID}_graph_list.txt
+    done < ${SAMPLE_ID}_cycles_list.txt
 
-        echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
+    echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
 
-    else
-        echo "#### No cycle graph files found for ${SAMPLE_ID}, skipping AmpliconClassifier.py... ####"
-    fi
 else
-    echo "#### AmpliconClassifier.py run for ${SAMPLE_ID} already completed, skipping... ####"
+    echo "#### No cycle graph files found for ${SAMPLE_ID}, skipping AmpliconClassifier.py... ####"
 fi
 
 
