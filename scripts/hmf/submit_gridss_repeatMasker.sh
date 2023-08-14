@@ -31,22 +31,29 @@ source $CONFIG
 # /exports/igmm/eddie/Glioblastoma-WGS/scripts/rmblast-2.14.0/bin
 
 ## Generate RM annotated high confidence SV call
-$GRIDSS_RM \
-    $GRIDSS_FINAL_FILTERED \
-    -o $GRIDSS_FINAL_FILTERED_RM \
-    -j $GRIDSS_JAR \
-    -w $GRIDSS_WORKING_DIR \
-    --rm $REPEAT_MASKER_EXE \
-    -t 16
+if [[ ! -f $GRIDSS_FINAL_FILTERED_RM ]]
+then
+    $GRIDSS_RM \
+        $GRIDSS_FINAL_FILTERED \
+        -o $GRIDSS_FINAL_FILTERED_RM \
+        -j $GRIDSS_JAR \
+        -w $GRIDSS_WORKING_DIR \
+        --rm $REPEAT_MASKER_EXE \
+        -t 16
+fi
 
 ## Generate RM annotated low confidence SV call
-$GRIDSS_RM \
-    $GRIDSS_PON_FILTERED \
-    -o $GRIDSS_PON_FILTERED_RM \
-    -j $GRIDSS_JAR \
-    -w $GRIDSS_WORKING_DIR \
-    --rm $REPEAT_MASKER_EXE \
-    -t 16
+if [[ ! -f $GRIDSS_PON_FILTERED_RM ]]
+then
+    $GRIDSS_RM \
+        $GRIDSS_PON_FILTERED \
+        -o $GRIDSS_PON_FILTERED_RM \
+        -j $GRIDSS_JAR \
+        -w $GRIDSS_WORKING_DIR \
+        --rm $REPEAT_MASKER_EXE \
+        -t 16
+fi
+
      
 
 
