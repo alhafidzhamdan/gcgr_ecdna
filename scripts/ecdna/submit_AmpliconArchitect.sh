@@ -60,7 +60,6 @@ if [ ! -f $AI_CNV ]
 then
 
     echo "#### CNV file from PURPLE for ${SAMPLE_ID} does not exist, running PURPLE... ####"
-    echo "#### Running without SNV and SV inputs... ####"
 
     if [ ! -d $PURPLE_TMP_DIR ]
     then
