@@ -105,7 +105,7 @@ then
                 -threads 16 \
                 -amber $OUTPUT_AMBER/${PATIENT_ID} \
                 -cobalt $OUTPUT_COBALT/${PATIENT_ID} \
-                -structural_vcf $GRIDSS_FINAL_FILTERED_RM \
+                -somatic_sv_vcf $GRIDSS_FINAL_FILTERED_RM \
                 -gc_profile $GC_PROFILE \
                 -ref_genome $REFERENCE \
                 -ref_genome_version 38 \
@@ -229,6 +229,9 @@ then
                     > classifier_stdout.log
             done < ${SAMPLE_ID}_graph_list.txt
         done < ${SAMPLE_ID}_cycles_list.txt
+
+        echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
+
     else
         echo "#### No cycle graph files found for ${SAMPLE_ID}, skipping AmpliconClassifier.py... ####"
     fi
