@@ -232,11 +232,15 @@ then
             --ref GRCh38 \
             --cycles $cycle \
             --graph $graph \
-            --report_complexity --annotate_cycles_file > $AA_CLASSIFIER_DIR/${SAMPLE_ID}_cycle_graph_${i}_classifier_stdout.log
+            --report_complexity \
+            --annotate_cycles_file
 
         echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} for cycle $i ####"
+
     done
 
+    echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
+    
 else
     echo "#### No cycle graph files found for ${SAMPLE_ID}, skipping AmpliconClassifier.py... ####"
 fi
