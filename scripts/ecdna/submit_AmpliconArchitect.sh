@@ -228,14 +228,14 @@ then
         cycle=$(head -n $i ${SAMPLE_ID}_cycles_list.txt | tail -n 1)
         graph=$(head -n $i ${SAMPLE_ID}_graph_list.txt | tail -n 1)
 
-        cd $AA_CLASSIFIER_DIR
-                
+        mkdir -p ${AA_CLASSIFIER_DIR}/cycle_${i} && cd ${AA_CLASSIFIER_DIR}/cycle_${i}
+
         python $AC \
             --ref GRCh38 \
             --cycles $cycle \
             --graph $graph \
             --report_complexity \
-            --annotate_cycles_file
+            --annotate_cycles_file > ${SAMPLE_ID}_cycle_${i}.log
 
         echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} for cycle $i ####"
 
