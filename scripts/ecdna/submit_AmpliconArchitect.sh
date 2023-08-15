@@ -235,7 +235,7 @@ then
             --cycles $cycle \
             --graph $graph \
             --report_complexity \
-            --annotate_cycles_file > ${SAMPLE_ID}_cycle_${i}.log
+            --annotate_cycles_file
 
         echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} for cycle $i ####"
 
