@@ -147,7 +147,7 @@ then
     esac
 
 else 
-    echo "#### CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping PURPLE... ####"
+    echo "#### CNV file from PURPLE for ${SAMPLE_ID} already exists, skipping... ####"
 fi
 
 export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
