@@ -215,22 +215,22 @@ then
     cd ${AA_RESULTS_DIR}/${SAMPLE_ID}
     ls -1 $PWD/*cycles.txt > ${SAMPLE_ID}_cycles_list.txt
     ls -1 $PWD/*graph.txt > ${SAMPLE_ID}_graph_list.txt
-    cat ${SAMPLE_ID}_cycles_list.txt
-    cat ${SAMPLE_ID}_graph_list.txt
+    # cat ${SAMPLE_ID}_cycles_list.txt
+    # cat ${SAMPLE_ID}_graph_list.txt
 
     ## Loop through each cycle and graph file
-    # while read -r cycle; do
-    #     while read -r graph; do
-    #         echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID} using $cycle and $graph... ####"
-    #         cd $AA_CLASSIFIER_DIR
-    #         python $AC \
-    #             --ref GRCh38 \
-    #             --cycles $cycle \
-    #             --graph $graph \
-    #             --report_complexity --annotate_cycles_file \
-    #             > ${SAMPLE_ID}_classifier_stdout.log
-    #     done < ${SAMPLE_ID}_graph_list.txt
-    # done < ${SAMPLE_ID}_cycles_list.txt
+    while read -r cycle; do
+        while read -r graph; do
+            echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID} using $cycle and $graph... ####"
+            cd $AA_CLASSIFIER_DIR
+            python $AC \
+                --ref GRCh38 \
+                --cycles $cycle \
+                --graph $graph \
+                --report_complexity --annotate_cycles_file \
+                > ${SAMPLE_ID}_classifier_stdout.log
+        done < ${SAMPLE_ID}_graph_list.txt
+    done < ${SAMPLE_ID}_cycles_list.txt
 
     echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
 
