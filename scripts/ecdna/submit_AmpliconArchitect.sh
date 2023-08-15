@@ -154,7 +154,7 @@ export PATH=/exports/igmm/eddie/Glioblastoma-WGS/anaconda/envs/AA/bin:$PATH
 export AA_DATA_REPO=/exports/igmm/eddie/Glioblastoma-WGS/scripts/AmpliconArchitect/data_repo
 
 ## Run AmplifiedIntervals.py to generate AA input bed file
-if [ -f $AI_CNV ]
+if [ -f $AI_CNV && ! -f $AA_CNV ]
 then
     echo "#### Preprocessing cnv bed files (gain = 5, minimum cn size = 100000) for ${SAMPLE_ID} ####"
     python $AI \
@@ -217,7 +217,7 @@ then
     ls -1 $PWD/*graph.txt > ${SAMPLE_ID}_graph_list.txt
     cat ${SAMPLE_ID}_cycles_list.txt
     cat ${SAMPLE_ID}_graph_list.txt
-    
+
     ## Loop through each cycle and graph file
     # while read -r cycle; do
     #     while read -r graph; do
