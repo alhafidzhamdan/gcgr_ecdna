@@ -180,6 +180,7 @@ fi
 
 if [[ ! -f $AA_RESULTS_DIR/${SAMPLE_ID}/${SAMPLE_ID}_amplicon1_cycles.txt && -f $AA_CNV ]]
 then
+
     echo "#### Running AA for ${SAMPLE_ID} using $AA_CNV, only including segments with CN 5 or more, and with min CN size 100000 ####"
     cd $AA_RESULTS_DIR/${SAMPLE_ID}
     python $AA \
@@ -235,6 +236,7 @@ then
             --annotate_cycles_file
 
         echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} for cycle $i ####"
+
     done
     echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
 else
