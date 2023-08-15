@@ -219,20 +219,25 @@ then
     # cat ${SAMPLE_ID}_graph_list.txt
 
     ## Loop through each cycle and graph file
-    while read -r cycle; do
-        while read -r graph; do
-            echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID} using $cycle and $graph... ####"
-            cd $AA_CLASSIFIER_DIR
-            python $AC \
-                --ref GRCh38 \
-                --cycles $cycle \
-                --graph $graph \
-                --report_complexity --annotate_cycles_file \
-                > ${SAMPLE_ID}_classifier_stdout.log
-        done < ${SAMPLE_ID}_graph_list.txt
-    done < ${SAMPLE_ID}_cycles_list.txt
+    num_cycles=$(wc -l < ${SAMPLE_ID}_cycles_list.txt)
 
-    echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
+    for i in $(seq 1 $num_cycles)
+    do 
+        echo "#### Processing cycle $i and graph $i for ${SAMPLE_ID}... ####"
+
+        cycle=$(head -n $i ${SAMPLE_ID}_cycles_list.txt | tail -n 1)
+        graph=$(head -n $i ${SAMPLE_ID}_graph_list.txt | tail -n 1)
+       
+        cd $AA_CLASSIFIER_DIR
+        
+        python $AC \
+            --ref GRCh38 \
+            --cycles $cycle \
+            --graph $graph \
+            --report_complexity --annotate_cycles_file > ${SAMPLE_ID}_classifier_stdout.log
+
+        echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
+    done
 
 else
     echo "#### No cycle graph files found for ${SAMPLE_ID}, skipping AmpliconClassifier.py... ####"
