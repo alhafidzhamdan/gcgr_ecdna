@@ -234,7 +234,7 @@ then
             --ref GRCh38 \
             --cycles $cycle \
             --graph $graph \
-            --report_complexity --annotate_cycles_file > ${SAMPLE_ID}_${cycle}_${graph}_classifier_stdout.log
+            --report_complexity --annotate_cycles_file > ${SAMPLE_ID}_cycle_graph_${i}_classifier_stdout.log
 
         echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} for cycle $i ####"
     done
