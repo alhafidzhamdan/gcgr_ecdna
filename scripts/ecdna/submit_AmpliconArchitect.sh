@@ -213,20 +213,20 @@ then
     echo "#### Running AmpliconClassifier.py for ${SAMPLE_ID}... ####"
 
     cd ${AA_RESULTS_DIR}/${SAMPLE_ID}
-    ls -1 $PWD/*cycles.txt > ${SAMPLE_ID}_cycles_list.txt
-    ls -1 $PWD/*graph.txt > ${SAMPLE_ID}_graph_list.txt
+    ls -1 $PWD/*cycles.txt > ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_cycles_list.txt
+    ls -1 $PWD/*graph.txt > ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_graph_list.txt
     # cat ${SAMPLE_ID}_cycles_list.txt
     # cat ${SAMPLE_ID}_graph_list.txt
 
     ## Loop through each cycle and graph file
-    num_cycles=$(wc -l < ${SAMPLE_ID}_cycles_list.txt)
+    num_cycles=$(wc -l < ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_cycles_list.txt)
 
     for i in $(seq 1 $num_cycles)
     do 
         echo "#### Processing cycle $i and graph $i for ${SAMPLE_ID}... ####"
 
-        cycle=$(head -n $i ${SAMPLE_ID}_cycles_list.txt | tail -n 1)
-        graph=$(head -n $i ${SAMPLE_ID}_graph_list.txt | tail -n 1)
+        cycle=$(head -n $i ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_cycles_list.txt | tail -n 1)
+        graph=$(head -n $i ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_graph_list.txt | tail -n 1)
 
         mkdir -p ${AA_CLASSIFIER_DIR}/cycle_${i} && cd ${AA_CLASSIFIER_DIR}/cycle_${i}
 
@@ -238,11 +238,8 @@ then
             --annotate_cycles_file
 
         echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} for cycle $i ####"
-
     done
-
     echo "#### AmpliconClassifier.py run completed for ${SAMPLE_ID} ####"
-    
 else
     echo "#### No cycle graph files found for ${SAMPLE_ID}, skipping AmpliconClassifier.py... ####"
 fi
