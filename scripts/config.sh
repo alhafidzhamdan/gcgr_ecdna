@@ -155,7 +155,7 @@ AA_PURPLE_BED_DIR=$VARIANTS/ecdna/AA_PURPLE_BED
 AA_CNV=$AA_PURPLE_BED_DIR/${SAMPLE_ID}.bed
 AA_RESULTS_DIR=$VARIANTS/ecdna/AA_PURPLE_RESULTS
 AC=${SCRIPTS}/AmpliconClassifier/amplicon_classifier.py
-AA_CLASSIFIER_DIR=${VARIANTS}/ecdna/AA_classifier/AC_v0.4.10/${STAGE}
+AA_CLASSIFIER_DIR=${VARIANTS}/ecdna/AA_classifier/AC_v0.4.10/${STAGE}/${SAMPLE_ID}
 
 ## LILAC:
 REF_NO_ALT=$RESOURCES/refgenome38/hg38_no_alt/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna.gz
