@@ -221,14 +221,13 @@ then
     ## Loop through each cycle and graph file
     num_cycles=$(wc -l < ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_cycles_list.txt)
 
+    cd ${AA_CLASSIFIER_DIR}
+
     for i in $(seq 1 $num_cycles)
     do 
         echo "#### Processing cycle $i and graph $i for ${SAMPLE_ID}... ####"
-
         cycle=$(head -n $i ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_cycles_list.txt | tail -n 1)
         graph=$(head -n $i ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_graph_list.txt | tail -n 1)
-
-        mkdir -p ${AA_CLASSIFIER_DIR}/cycle_${i} && cd ${AA_CLASSIFIER_DIR}/cycle_${i}
 
         python $AC \
             --ref GRCh38 \
