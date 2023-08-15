@@ -215,8 +215,6 @@ then
     cd ${AA_RESULTS_DIR}/${SAMPLE_ID}
     ls -1 $PWD/*cycles.txt > ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_cycles_list.txt
     ls -1 $PWD/*graph.txt > ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_graph_list.txt
-    # cat ${SAMPLE_ID}_cycles_list.txt
-    # cat ${SAMPLE_ID}_graph_list.txt
 
     ## Loop through each cycle and graph file
     num_cycles=$(wc -l < ${AA_RESULTS_DIR}/${SAMPLE_ID}/${SAMPLE_ID}_cycles_list.txt)
