@@ -227,7 +227,9 @@ then
 
         cycle=$(head -n $i ${SAMPLE_ID}_cycles_list.txt | tail -n 1)
         graph=$(head -n $i ${SAMPLE_ID}_graph_list.txt | tail -n 1)
-               
+
+        cd $AA_CLASSIFIER_DIR
+                
         python $AC \
             --ref GRCh38 \
             --cycles $cycle \
