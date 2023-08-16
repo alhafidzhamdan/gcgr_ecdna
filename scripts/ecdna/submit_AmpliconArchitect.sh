@@ -94,7 +94,9 @@ then
             echo "#### Formatting for AmplifiedIntervals.py... ####"
             
             cut -f 1-4 $PURPLE_TMP_CNV | sed '1d' | sed 's/\t[^\t]*$/\t1&/' > $AI_CNV
+
         else
+        
             echo "#### Running PURPLE with SV file..."
 
             java $JVM_OPTS $JVM_TMP_DIR -jar $PURPLE_JAR \
