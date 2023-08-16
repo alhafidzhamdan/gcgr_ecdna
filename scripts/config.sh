@@ -19,15 +19,13 @@ READS=$WGS/raw/reads
 LANES=$WGS/raw/lanes
 BCBIO_CONFIG=$BASE/bcbio/config
 BCBIO_WORK=$BASE/bcbio/work
-SCRIPTS=$BASE/scripts ## needs cleaning
+SCRIPTS=$BASE/scripts 
 RESOURCES=$BASE/resources
 METRICS=$WGS/metrics
 PON=$METRICS/pon
 QC=$WGS/qc
 READ_BIAS=$QC/read_orientation_bias
 CONT_DIR=$QC/calculate_contamination
-VERIFYBAMID_DIR=$QC/verifybamid2
-GDB_DIR=$GERMLINE_DIR/gdb
 
 ## Variants:
 BCBIO_VARIANTS=$WGS/variants/bcbio
