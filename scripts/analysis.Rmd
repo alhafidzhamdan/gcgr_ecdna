@@ -1,0 +1,69 @@
+---
+title: "Downstream analysis"
+output: html_document
+date: "2023-08-16"
+editor_options: 
+  chunk_output_type: console
+---
+
+## Load libraries:
+```{r}
+.p <- c("tidyverse", "data.table") 
+invisible(suppressPackageStartupMessages(lapply(.p, require, character.only=T)))
+
+```
+
+## Compile AmpliconClassifier output:
+```{r}
+## Load sample names:
+ac_dir <- "/Users/alhafidzhamdan/PhD/Data/WGS/Structural_variants/ecDNA/AmpliconArchitect/AC_outputs/AC_v0.4.10/Primary"
+paths <- list.files(ac_dir, pattern = "GCGR|NH", recursive = T, full.names = T)
+cycle_file <- paths[grepl(pattern = "classification_profiles", paths)]
+
+## Iterate across all "_amplicon_classification_profiles.tsv" and collate all amplicon classes:
+cycle_data <- lapply(seq_along(cycle_file), function(i) { cyclic_status <- fread(cycle_file[i]); return(cyclic_status) }) %>% rbindlist()
+samples <- unique(cycle_data$sample_name)
+
+## Annotate amplicons with copy number data:
+cycle_data_cn <- lapply(seq_along(samples), function(i) {
+   
+   this_sample_amplicon_data <- read_lines(paste0("/Users/alhafidzhamdan/PhD/Data/WGS/Structural_variants/ecDNA/AmpliconArchitect/AA_outputs/Primary/", samples[i], "/", samples[i], "_summary.txt")) 
+   this_sample_amplicon <- this_sample_amplicon_data[grepl("AverageAmplifiedCopyCount", this_sample_amplicon_data)] %>% str_replace_all("\\[|\\]", "")
+   
+   amplicon_data <- list()
+   for (j in 1:length(this_sample_amplicon)) {
+      
+      amplicon_data[[j]] <- data.frame(sample_name = samples[i], 
+                                  amplicon_number = str_split(this_sample_amplicon[j], " ")[[1]][1], 
+                                  copy_number = as.numeric(str_split(this_sample_amplicon[j], " ")[[1]][4]))
+      
+   }
+   amplicon_data_all <- do.call(rbind, amplicon_data)
+    
+   return(amplicon_data_all)
+   
+}) %>% rbindlist()
+cycle_data_cn_annotated <- cycle_data %>% left_join(cycle_data_cn) 
+
+## Final ecDNA candidates with CN >10
+ecdna_final <- cycle_data_cn_annotated %>% filter(copy_number > 10 & `ecDNA+` == "Positive")
+
+## Annotate with oncogenes:
+oncogene_data <- lapply(seq_along(ecdna_final$sample_name), function(k) {
+   
+   ecdna_gene_file <- paste0("/Users/alhafidzhamdan/PhD/Data/WGS/Structural_variants/ecDNA/AmpliconArchitect/AC_outputs/AC_v0.4.10/Primary/", ecdna_final$sample_name[k], 
+                             "/", ecdna_final$sample_name[k], "_", ecdna_final$amplicon_number[k],"_gene_list.tsv")
+   oncogenes <- fread(ecdna_gene_file) %>% filter(is_canonical_oncogene == "TRUE") %>% .$gene
+   annotated <- data.frame(sample_name = ecdna_final$sample_name[k], amplicon_number = ecdna_final$amplicon_number[k], oncogene_affected = paste(noquote(oncogenes), collapse=", "))
+   return(annotated)
+}) %>% rbindlist()
+final <- cycle_data_cn_annotated %>% left_join(oncogene_data)
+
+## Save those with ecDNA:
+final %>% filter(`ecDNA+` == "Positive") %>% 
+   filter(copy_number > 10) %>% 
+   mutate(sample_name = str_remove(sample_name, "T")) %>% 
+   write.table("/Users/alhafidzhamdan/PhD/Data/WGS/Structural_variants/ecDNA/AmpliconArchitect/Summary/GCGR_second_batch.txt", col.names = T, row.names = F, sep = "\t", quote = F)
+
+```
+
